@@ -4,49 +4,42 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+    <table id="users" class="table table-striped table-bordered"  >
+      
+      <thead>
+        <tr>
+          <th class="text-center">ID</th>
+          <th class="text-center">Serie Decimal</th>
+          <th class="text-center">Serie Hexadecimal</th>
+          <th class="text-center">Tipo de Solicitud</th>
+          <th class="text-center">Estatus de Solicitud</th>
+          <th class="text-center" >Fecha </th>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($serial as $caso)
+          {{-- expr --}}
+          <tr>
+            <td>{{ $caso -> id}}</td>
+            <td>{{ $caso -> serie_dec}}</td>
+            <td>{{ $caso -> serie_hex}}</td>
+            <td>{{ $caso -> tipo_solicitud}}</td>
+            <td>{{ $caso -> estatus_solicitud}}</td>
+            <td> {{ $caso -> created_at}}</td>
+          </tr>
+        @endforeach
+      </tbody>
 
-                    <h1>Estas en gestión de seriales</h1>
-                </div>
-            </div>
-        </div>
-    </div>
+    </table>
 
-    <form action="" method="post">
-  @csrf
-  {{-- <div class="btn-group" role="group" aria-label="...">
-      <h2>Comboboxes</h2>
-      <div class="btn-group" role="group">
-          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                  aria-haspopup="true" aria-expanded="false">
-              Seleccione una opción
-              <span class="caret"></span>
-          </button>
-          <ul class="dropdown-menu">
-              @foreach($proveed as $daniel)
-                <li> <a href="proveedor/prueba/{proveedor}">{{$daniel->proveedor}}</a> </li>
-              @endforeach
-          </ul>
-      </div>
-  </div> --}}
-  <select name="id" id="addLocationIdReq">
-    <option value="" disabled selected >prueba:</option>
-                @foreach($serial as $daniel)
-                <option   value="{{$daniel->id}}" >{{$daniel->tipo_solicitud}}</option>
-                @endforeach
-            </select>
-        </div>
-
-</form>
+    
 </div>
+
+    <script>
+      $(document).ready(function() {
+        $('#users').DataTable();
+      } );
+    </script>
+
 @endsection

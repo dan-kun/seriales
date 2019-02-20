@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Casos;
+use App\Caso;
 
 
 class CasosController extends Controller
@@ -27,13 +27,12 @@ class CasosController extends Controller
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
 
-        $users = User::all();
-        $casos = Casos::all();
+        $casos = Caso::all();
 
-        return view('casos', compact('casos','items', 'users'));
-
-/*        return view('casos', compact('items'));
-*/    }
+        /*return view('casos', compact('casos','items', 'users'));
+*/
+        return view('casos', compact('items', 'casos'));
+    }
     
 
     /**
