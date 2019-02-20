@@ -21,5 +21,32 @@
             </div>
         </div>
     </div>
+
+    <form action="" method="post">
+  @csrf
+  {{-- <div class="btn-group" role="group" aria-label="...">
+      <h2>Comboboxes</h2>
+      <div class="btn-group" role="group">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+              Seleccione una opción
+              <span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+              @foreach($proveed as $daniel)
+                <li> <a href="proveedor/prueba/{proveedor}">{{$daniel->proveedor}}</a> </li>
+              @endforeach
+          </ul>
+      </div>
+  </div> --}}
+  <select name="id" id="addLocationIdReq">
+    <option value="" disabled selected >prueba:</option>
+                @foreach($serial as $daniel)
+                <option   value="{{$daniel->id}}" >{{$daniel->tipo_solicitud}}</option>
+                @endforeach
+            </select>
+        </div>
+
+</form>
 </div>
 @endsection

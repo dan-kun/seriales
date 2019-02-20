@@ -3,23 +3,39 @@
 @extends('menu-test')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
+  <div class="container">
+    <table id="users" class="table table-striped table-bordered" style="width:100%" >
+      
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach ($users as $user)
+          {{-- expr --}}
+          <tr>
+            <td>{{ $user -> id}}</td>
+            <td>{{ $user -> name}}</td>
+            <td>{{ $user -> email}}</td>
+          </tr>
+        @endforeach
+      </tbody>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    </table>
+    
 
-                    <h1>Estas en gestion de casos</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.3.1.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script>
+            $(document).ready(function() {
+        $('#users').DataTable();
+      } );
+    </script>
 @endsection
