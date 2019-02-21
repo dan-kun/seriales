@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <table id="users" class="table table-striped table-bordered"  >
+    <table id="seriales" class="table table-striped table-bordered"  >
       
       <thead>
         <tr>
@@ -17,20 +17,6 @@
 
         </tr>
       </thead>
-      <tbody>
-        @foreach ($serial as $caso)
-          {{-- expr --}}
-          <tr>
-            <td>{{ $caso -> id}}</td>
-            <td>{{ $caso -> serie_dec}}</td>
-            <td>{{ $caso -> serie_hex}}</td>
-            <td>{{ $caso -> tipo_solicitud}}</td>
-            <td>{{ $caso -> estatus_solicitud}}</td>
-            <td> {{ $caso -> created_at}}</td>
-          </tr>
-        @endforeach
-      </tbody>
-
     </table>
 
     
@@ -38,7 +24,18 @@
 
     <script>
       $(document).ready(function() {
-        $('#users').DataTable();
+        $('#seriales').DataTable({
+          "ServerSide": true,
+          "ajax": "{{ url('api/seriales') }}",
+          "columns": [
+            {data: 'id'},
+            {data: 'serie_dec'},
+            {data: 'serie_hex'},
+            {data: 'tipo_solicitud'},
+            {data: 'estatus_solicitud'},
+            {data: 'created_at'},
+          ]
+        });
       } );
     </script>
 

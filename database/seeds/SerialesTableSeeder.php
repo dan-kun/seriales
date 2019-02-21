@@ -12,6 +12,6 @@ class SerialesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Seriales::class, 2000)->create();
+        factory(Seriales::class, 20000)->create();
     }
 }

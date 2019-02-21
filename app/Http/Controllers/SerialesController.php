@@ -23,8 +23,7 @@ class SerialesController extends Controller
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
 
-        $serial = Seriales::all();
-        return view('seriales', compact('items','serial'));
+        return view('seriales', compact('items'));
     }
     
 

@@ -18,7 +18,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 /*Route::get('/Listar_caso', 'HomeController@Listar')->name('Listar_caso');*/
 Route::resource('/denuncia_almacen', 'DenunciaController');
-Route::resource('/casos', 'CasosController');
+Route::resource('casos', 'CasosController');
 Route::resource('/seriales', 'SerialesController');
 /*Route::get('menu-test', 'MenuController@index');*/
 

@@ -27,11 +27,10 @@ class CasosController extends Controller
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
 
-        $casos = Caso::all();
 
         /*return view('casos', compact('casos','items', 'users'));
 */
-        return view('casos', compact('items', 'casos'));
+        return view('casos', compact('items'));
     }
     
 

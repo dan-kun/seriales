@@ -16,3 +16,19 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('seriales', function(){
+	//return App\Seriales::all();
+	return datatables()
+	->eloquent(App\Seriales::query())
+	->toJson();
+});
+
+Route::get('casos', function(){
+	//return App\Seriales::all();
+	return datatables()
+	->eloquent(App\Caso::query())
+	->addColumn('btn', 'actions')
+	->rawColumns(['btn'])
+	->toJson();
+});
