@@ -8,7 +8,6 @@
       
       <thead>
         <tr>
-          <th class="text-center">ID</th>
           <th class="text-center">Número de caso</th>
           <th class="text-center">Codigo de Trasacción</th>
           <th class="text-center">Solicitante</th>
@@ -20,6 +19,17 @@
 
         </tr>
       </thead>
+      <tfoot>
+        <tr>
+          <th>Número de caso</th>
+          <th>Codigo de Trasacción</th>
+          <th>Solicitante</th>
+          <th>Lugar Ocurrencia</th>
+          <th>Descripción</th>
+          <th>Estatus</th>
+          <th>Fecha</th>
+        </tr>
+      </tfoot>
     </table>
     
 
@@ -31,7 +41,6 @@
           "ServerSide": true,
           "ajax": "{{ url('api/casos') }}",
           "columns": [
-            {data: 'id'},
             {data: 'num_caso'},
             {data: 'cod_trasaccion'},
             {data: 'solicitante'},
@@ -40,7 +49,33 @@
             {data: 'status'},
             {data: 'created_at'},
             {data: 'btn'},
-          ]
+          ],
+          "language": {
+ 
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+ 
+        },
+
+        initComplete: function () {
+            this.api().columns().every( function () {
+                var column = this;
+                var select = $('<select><option value=""></option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
         });
       } );
     </script>
