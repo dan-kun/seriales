@@ -21,6 +21,8 @@ Route::get('seriales', function(){
 	//return App\Seriales::all();
 	return datatables()
 	->eloquent(App\Seriales::query())
+	->addColumn('btn', 'actions_seriales')
+	->rawColumns(['btn'])
 	->toJson();
 });
 

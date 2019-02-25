@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="container">
-    <table id="seriales" class="table table-striped table-bordered"  >
+    <table id="seriales" class="table table-striped table-bordered dt-responsive nowrap display"  >
       
       <thead>
         <tr>
@@ -14,9 +14,22 @@
           <th class="text-center">Tipo de Solicitud</th>
           <th class="text-center">Estatus de Solicitud</th>
           <th class="text-center" >Fecha </th>
+          <th class="col-sm-1 text-center" >&nbsp; </th>
 
         </tr>
       </thead>
+      <tfoot>
+        <tr>
+          <th class="text-center">&nbsp; </th>
+          <th class="text-center">&nbsp; </th>
+          <th class="text-center">&nbsp; </th>
+          <th>Solicitud</th>
+          <th>Estatus </th>
+          <th class="text-center">&nbsp; </th>
+          <th class="text-center">&nbsp; </th>
+
+        </tr>
+      </tfoot>
     </table>
 
     
@@ -25,6 +38,20 @@
     <script>
       $(document).ready(function() {
         $('#seriales').DataTable({
+          responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        return 'Detalles de su selección';
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table'
+                } )
+            }
+        },
+          "autoWidth": true,
+          "processing": true,
           "ServerSide": true,
           "ajax": "{{ url('api/seriales') }}",
           "columns": [
@@ -33,8 +60,40 @@
             {data: 'serie_hex'},
             {data: 'tipo_solicitud'},
             {data: 'estatus_solicitud'},
-            {data: 'created_at'},
-          ]
+            {data: 'fecha'},
+            {data: 'btn'},
+          ],
+
+          "language": {
+ 
+            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
+ 
+        },
+
+        initComplete: function () {
+            this.api().columns([3,4]).every( function () {
+              var api = this.api();
+            api.$('td').click( function () {
+                api.search( this.innerHTML ).draw();
+            } );
+                var column = this;
+                var select = $('<select><option value="" disabled selected>Seleccione</option></select>')
+                    .appendTo( $(column.footer()).empty() )
+                    .on( 'change', function () {
+                        var val = $.fn.dataTable.util.escapeRegex(
+                            $(this).val()
+                        );
+ 
+                        column
+                            .search( val ? '^'+val+'$' : '', true, false )
+                            .draw();
+                    } );
+ 
+                column.data().unique().sort().each( function ( d, j ) {
+                    select.append( '<option value="'+d+'">'+d+'</option>' )
+                } );
+            } );
+        }
         });
       } );
     </script>

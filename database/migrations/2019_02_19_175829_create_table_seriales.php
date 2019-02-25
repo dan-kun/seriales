@@ -19,6 +19,7 @@ class CreateTableSeriales extends Migration
             $table->string('serie_hex');
             $table->string('tipo_solicitud');
             $table->string('estatus_solicitud');
+            $table->date('fecha');
             $table->timestamps();
         });
     }

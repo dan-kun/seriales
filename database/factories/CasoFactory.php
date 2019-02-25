@@ -15,12 +15,13 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Caso::class, function (Faker $faker) {
     return [
-        'num_caso' => 13,
-        'cod_trasaccion' => 5,
+        'num_caso' => mt_rand(1,100),
+        'cod_trasaccion' => mt_rand(100,1000),
         'solicitante' => $faker->name(),
-        'lugar_ocurrencia' => str_random(10),
+        'lugar_ocurrencia' => $faker->paragraph($nbSentences = 1, $variableNbSentences = true),
         'descripcion' => str_random(20),
-        'status' => 'Procesado',
+        'status' => $faker-> randomElement(['Procesado','Por procesar']),
+        'fecha'=>$faker->date($format = 'Y-m-d', $max = 'now'),
 
     ];
 });

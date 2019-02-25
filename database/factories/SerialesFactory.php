@@ -15,10 +15,11 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Seriales::class, function (Faker $faker) {
     return [
-        'serie_dec' => 11234,
-        'serie_hex' => 'a45',
-        'tipo_solicitud' => $faker->name(),
-        'estatus_solicitud' => str_random(10),
+        'serie_dec' => mt_rand(50,200),
+        'serie_hex' => $faker-> randomElement(['A10','B4','C45','23A','4CB','AB10','43C']),
+        'tipo_solicitud' => $faker->randomElement(['Exclusión', 'Inclusión']),
+        'estatus_solicitud' => $faker->randomElement(['Procesado', 'Por Procesar']),
+        'fecha'=>$faker->date($format = 'Y-m-d', $max = 'now'),
 
     ];
 });

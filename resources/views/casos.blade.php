@@ -8,26 +8,28 @@
       
       <thead>
         <tr>
-          <th class="text-center">Número de caso</th>
+          <th class="text-center">Caso</th>
           <th class="text-center">Codigo de Trasacción</th>
           <th class="text-center">Solicitante</th>
           <th class="text-center"> Lugar Ocurrencia</th>
-          <th class="text-center">Descripción </th>
+          <th class="text-center">Resumen </th>
           <th class="text-center">Estatus</th>
-          <th class="col-sm-1 text-center" >Fecha </th>
-          <th class="col-sm-1 text-center" >&nbsp; </th>
+          <th class="text-center" >Fecha </th>
+          <th class="text-center" >&nbsp; </th>
 
         </tr>
       </thead>
       <tfoot>
         <tr>
-          <th>Número de caso</th>
-          <th>Codigo de Trasacción</th>
-          <th>Solicitante</th>
-          <th>Lugar Ocurrencia</th>
-          <th>Descripción</th>
+          <th>&nbsp; </th>
+          <th>&nbsp; </th>
+          <th>&nbsp; </th>
+          <th>&nbsp; </th>
+          <th>&nbsp; </th>
           <th>Estatus</th>
-          <th>Fecha</th>
+          <th>&nbsp; </th>
+          <th>&nbsp; </th>
+
         </tr>
       </tfoot>
     </table>
@@ -38,6 +40,22 @@
     <script>
       $(document).ready(function() {
         $('#casos').DataTable({
+
+          responsive: {
+            details: {
+                display: $.fn.dataTable.Responsive.display.modal( {
+                    header: function ( row ) {
+                        return 'Detalles de su selección';
+                    }
+                } ),
+                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
+                    tableClass: 'table'
+                } )
+            }
+        },
+
+          "autoWidth": true,
+          "processing": true,
           "ServerSide": true,
           "ajax": "{{ url('api/casos') }}",
           "columns": [
@@ -47,7 +65,7 @@
             {data: 'lugar_ocurrencia'},
             {data: 'descripcion'},
             {data: 'status'},
-            {data: 'created_at'},
+            {data: 'fecha'},
             {data: 'btn'},
           ],
           "language": {
@@ -57,9 +75,9 @@
         },
 
         initComplete: function () {
-            this.api().columns().every( function () {
+            this.api().columns([5]).every( function () {
                 var column = this;
-                var select = $('<select><option value=""></option></select>')
+                var select = $('<select><option value="" disabled selected>Estatus</option></select>')
                     .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(

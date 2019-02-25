@@ -21,6 +21,7 @@ class CreateTableCasos extends Migration
             $table->text('lugar_ocurrencia');
             $table->text('descripcion');
             $table->string('status');
+            $table->date('fecha');
             $table->timestamps();
         });
     }
