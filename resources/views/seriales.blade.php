@@ -50,9 +50,16 @@
                 } )
             }
         },
-          "autoWidth": true,
-          "processing": true,
+
           "ServerSide": true,
+          dom: 'Bfrtip',
+          fixedColumns: true,
+          fixedHeader: true,
+          scrollCollapse: true,
+          autoWidth: true,
+          scrollCollapse: true,
+          lengthMenu: [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
+          info: true,
           "ajax": "{{ url('api/seriales') }}",
           "columns": [
             {data: 'id'},
@@ -64,6 +71,43 @@
             {data: 'btn'},
           ],
 
+          buttons: [
+          {
+            extend: 'excelHtml5',
+            title: 'Data export',
+            className: 'btn',
+            text: "Excel"
+          },
+          {
+            extend: 'csvHtml5',
+            title: 'Data export',
+            className: 'btn',
+            text: "Csv",
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5],
+              modifier: {
+                page: 'current'
+              }
+            }
+          },
+          {
+            extend: 'pdfHtml5',
+            title: 'Data export',
+            className: 'btn',
+            text: "Pdf",
+            exportOptions: {
+              columns: [0, 1, 2, 3, 4, 5],
+              modifier: {
+                page: 'current'
+              }
+            }
+        },
+        ],
+
+        /*buttons: [
+        'copy', 'excel', 'pdf'
+    ],*/
+
           "language": {
  
             "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
@@ -72,12 +116,8 @@
 
         initComplete: function () {
             this.api().columns([3,4]).every( function () {
-              var api = this.api();
-            api.$('td').click( function () {
-                api.search( this.innerHTML ).draw();
-            } );
                 var column = this;
-                var select = $('<select><option value="" disabled selected>Seleccione</option></select>')
+                var select = $('<select><option value="" disabled selected>Estatus</option></select>')
                     .appendTo( $(column.footer()).empty() )
                     .on( 'change', function () {
                         var val = $.fn.dataTable.util.escapeRegex(
@@ -93,7 +133,10 @@
                     select.append( '<option value="'+d+'">'+d+'</option>' )
                 } );
             } );
-        }
+        },
+
+
+
         });
       } );
     </script>
