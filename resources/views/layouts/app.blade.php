@@ -10,8 +10,8 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" ></script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+    <script src="{{ asset('DataTables/datatables.min.js') }}" ></script>
+    
 
 
     <!-- Fonts -->
@@ -20,7 +20,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
+    <link href="{{ asset('DataTables/datatables.min.css') }}" rel="stylesheet">
 
     
     
@@ -94,4 +94,6 @@
 
 
 </body>
+
+
 </html>

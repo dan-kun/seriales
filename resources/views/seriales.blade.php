@@ -1,8 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.app1')
+
+
+@section('content')
 
 @extends('menu-test')
 
-@section('content')
 <div class="container">
     <table id="seriales" class="table table-striped table-bordered dt-responsive nowrap display"  >
       
@@ -34,6 +36,8 @@
 
     
 </div>
+
+<script type="text/javascript" src="DataTables/datatables.min.js"></script>
 
     <script>
       $(document).ready(function() {
