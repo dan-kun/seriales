@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" ></script>
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
+
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -89,7 +91,6 @@
         
     </div>
     
-<script type="text/javascript" src="DataTables/datatables.min.js"></script>
 
 
 </body>
