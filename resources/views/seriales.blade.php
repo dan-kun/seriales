@@ -52,7 +52,7 @@
         },
 
           "ServerSide": true,
-          dom: 'Bfrtip',
+          dom: 'lfrtBip',
           fixedColumns: true,
           fixedHeader: true,
           scrollCollapse: true,
