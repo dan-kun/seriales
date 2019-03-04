@@ -1,0 +1,1 @@
+<a href="{{ route('casos.show', $id) }}" class="btn btn-primary" >Ver</a>
