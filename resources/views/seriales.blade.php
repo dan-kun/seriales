@@ -6,17 +6,20 @@
 @extends('menu-test')
 
 <div class="container">
+  <div class="row mx-5">
+    <div class="col-lg-11 mx-5">
+
     <table id="seriales" class="table table-striped table-bordered responsive nowrap" style="width: 100%" >
 
       <thead>
         <tr>
-          <th class="text-center">ID</th>
+          <th class="text-center ">ID</th>
           <th class="text-center">Serie Decimal</th>
           <th class="text-center">Serie Hexadecimal</th>
           <th class="text-center">Tipo de Solicitud</th>
           <th class="text-center">Estatus de Solicitud</th>
           <th class="text-center" >Fecha </th>
-          <th class="text-center" > Detalle; </th>
+          <th class="text-center" > Detalle </th>
 
         </tr>
       </thead>
@@ -32,8 +35,9 @@
 
         </tr>
       </tfoot>
-    </table>
-
+      </table>
+    </div>
+  </div>
 
 </div>
 

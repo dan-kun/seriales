@@ -21,6 +21,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('DataTables/datatables.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/details.css') }}" rel="stylesheet">
 
 
 
@@ -28,14 +29,11 @@
 </head>
 <body>
     <header class="header">
-        <div    >
-            <figure style="margin: 0 auto;" class="logo">
-                <img style= "width: 100%; height:100% " src="images/token.png">
-            </figure>
-    </header>
-    <div id="app">
-        <nav style = "padding-top: 0% ; " class="nav navbar navbar-expand-md navbar-light navbar-laravel">
-            <div class="container">
+    <div id="app" class="container-fluid p-0">
+        <nav  class="nav navbar navbar-expand-lg navbar-dark bg-dark ">
+              <figure  class="logo pr-4 pt-3">
+                <img style= " height:56px " src="images/logo.jpg">
+              </figure>
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -45,11 +43,13 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-                    <div class="justify-content-center">
-                        @yield('content1')
-                    </div>
+                    <!-- <div class="justify-content-center ml-auto"> -->
+                    <!-- </div> -->
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
+                      <li class="nav-item">
+                        @yield('content1')
+                      </li>
                         <!-- Authentication Links -->
                         @guest
                             <li class="nav-item">
@@ -81,9 +81,8 @@
                         @endguest
                     </ul>
                 </div>
-
-            </div>
         </nav>
+      </header>
 
         <main class="py-4">
             @yield('content')
@@ -91,7 +90,7 @@
 
     </div>
 
-
+  @extends('footer')
 
 </body>
 
