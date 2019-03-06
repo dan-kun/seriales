@@ -32,7 +32,7 @@
     <div id="app" class="container-fluid p-0">
         <nav  class="nav navbar navbar-expand-lg navbar-dark bg-dark ">
               <figure  class="logo pr-4 pt-3">
-                <img style= " height:56px " src="images/logo.jpg">
+                <img style= " height:56px " src="images/logocantv.png">
               </figure>
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}
