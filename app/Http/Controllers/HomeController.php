@@ -29,10 +29,10 @@ class HomeController extends Controller
                                         'Gestion de Seriales' => ['url' => 'seriales']
             ]
         ],
-            'Denuncia de almacen' => ['url' => 'Denuncia_almacen'],
+            'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
         return view('home', compact('items'));
     }
-    
-}  
+
+}

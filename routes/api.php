@@ -17,14 +17,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('seriales', function(){
-	//return App\Seriales::all();
+/*Route::get('seriales', function(){
 	return datatables()
 	->eloquent(App\Seriales::query())
 	->addColumn('btn', 'actions_seriales')
 	->rawColumns(['btn'])
 	->toJson();
-});
+});*/
 
 Route::get('casos', function(){
 	//return App\Seriales::all();
@@ -34,3 +33,21 @@ Route::get('casos', function(){
 	->rawColumns(['btn'])
 	->toJson();
 });
+
+// Modulo de Seriales
+Route::get(
+  'seriales/{tipo_solicitud}/{estatus_solicitud}/{serie_decimal}/{serie_hexadecimal}/',
+  'SerialesController@listado'
+);
+Route::get('seriales/{serial}', 'SerialesController@detalle');
+
+Route::get(
+    'seriales', function(){
+      return view('seriales');
+    }
+);
+
+Route::get(
+    'seriales/combos/{tipo_solicitud}/{estatus_solicitud}/',
+    'SerialesController@getCombosFiltros'
+);

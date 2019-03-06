@@ -1,0 +1,38 @@
+/* body
+{
+  background: #2b546d;
+} */
+
+.header img
+{
+  width: 0 auto;
+  object-fit: cover;
+  align-items: flex-start;
+}
+.show
+{
+  background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
+}
+.dropdown-item
+{
+  color: white;
+}
+.nav
+{
+  background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
+}
+
+#cuadro
+{
+  background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
+  height: 56px;
+}
+
+#footer{
+  background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
+}
+
+#footer a
+{
+  color: white;
+}
