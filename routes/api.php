@@ -43,16 +43,16 @@ Route::get('seriales/{serial}', 'SerialesController@detalle');
 
 Route::get(
     'seriales', function(){
-      $items = [
-        'Gestion' => [
-          'submenu' => [
-            'Gestion de Casos' => [ 'url' => 'casos'],
-            'Gestion de Seriales' => ['url' => 'seriales']
-          ]
-      ],
-        'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
-        'Listar caso'    => ['url' => 'Listar_caso'],
-      ];
+    	$items = [
+            'Gestion'          => ['submenu' => [
+                                        'Gestion de Casos' => [ 'url' => 'casos'],
+                                        'Gestion de Seriales' => ['url' => 'api/seriales']
+            ]
+        ],
+            'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
+            'Listar caso'    => ['url' => 'Listar_caso'],
+        ];
+      
       return view('seriales', compact('items'));
     }
 );

@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
   var host = location;
+  console.log(host);
 
   var dtLengthMenu = "Mostrar _MENU_ registros por página";
   var dtInfo = "Página _PAGE_ de _PAGES_";
@@ -50,6 +51,7 @@ $(document).ready(function(){
 
     // var url = 'http://localhost/proyecto_cantv/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
     var url = host + '/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    console.log(url);
     $.getJSON(url).done(function(data) {
       datos = data;
       // alert(datos);
