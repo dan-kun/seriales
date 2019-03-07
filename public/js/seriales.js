@@ -1,4 +1,7 @@
 $(document).ready(function(){
+
+  var host = location;
+
   var dtLengthMenu = "Mostrar _MENU_ registros por página";
   var dtInfo = "Página _PAGE_ de _PAGES_";
   var dtSearch = "Buscar:";
@@ -45,7 +48,8 @@ $(document).ready(function(){
       serie_hexadecimal = $('#serie_hexadecimal').val();
     }
 
-    var url = 'http://localhost/seriales/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    // var url = 'http://localhost/proyecto_cantv/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    var url = host + '/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
     $.getJSON(url).done(function(data) {
       datos = data;
       // alert(datos);
@@ -90,7 +94,8 @@ $(document).ready(function(){
   }
 
   function getCombos() {
-    var url = 'http://localhost/seriales/public/api/seriales/combos/Todos/Todos/';
+    // var url = 'http://localhost/proyecto_cantv/public/api/seriales/combos/Todos/Todos/';
+    var url = host + '/combos/Todos/Todos/';
     $.getJSON(url).done(function(data) {
         datos = data;
         setComboTipoSolicitud(datos.combo_tipo_solicitud, 'tipo_solicitud');
