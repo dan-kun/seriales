@@ -145,7 +145,7 @@ $(document).ready(function(){
   // mostrar el modal que ya ha sido previamente maquetado en el html usando
   // bootstrap.
   function getSerialDetailButton(id){
-    return '<a href="seriales/'+id+'" class="bg-white text-primary btn-detail" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-info-circle fa-2x"></i></a>';
+    return '<a id="'+id+'" href="seriales/'+id+'" class="bg-white text-primary btn-detail" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-info-circle fa-2x"></i></a>';
   }
 
   // Con esta funcion se actualizan los valores del modal segun se pulse el
@@ -159,6 +159,8 @@ $(document).ready(function(){
     // href del <a></a>, esto a traves de la formacion de la ruta relativa en el
     // html con la forma seriales/{id}
     var url = this.href;
+    var id = this.id;
+    url = host + '/' + id;
     // Se inicializa la variable datos
     var datos = "";
     // Se consulta el webservice usando la url obtenida del href del enlace
