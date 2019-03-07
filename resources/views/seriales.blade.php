@@ -3,7 +3,7 @@
 
 @section('content')
 
-@extends('menu-test')
+{{-- @extends('menu-test') --}}
 
 <div class="container">
       <div class="row">
@@ -65,6 +65,8 @@
         </div>
       </div>
     </div>
+
+    <script src="../js/seriales.js" charset="utf-8"></script>
 
     <!-- <script>
       $(document).ready(function() {
@@ -204,6 +206,5 @@
       } );
     </script>
     <script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
-    <script src="../js/seriales.js" charset="utf-8"></script>
 
 @endsection

@@ -45,9 +45,10 @@ $(document).ready(function(){
       serie_hexadecimal = $('#serie_hexadecimal').val();
     }
 
-    var url = 'http://localhost/proyecto_cantv/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    var url = 'http://localhost/seriales/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
     $.getJSON(url).done(function(data) {
       datos = data;
+      // alert(datos);
       $('#seriales').DataTable({
         data: datos,
         columns: [
@@ -84,7 +85,7 @@ $(document).ready(function(){
   }
 
   function getCombos() {
-    var url = 'http://localhost/proyecto_cantv/public/api/seriales/combos/Todos/Todos/';
+    var url = 'http://localhost/seriales/public/api/seriales/combos/Todos/Todos/';
     $.getJSON(url)
       .done(function(data) {
         datos = data;
