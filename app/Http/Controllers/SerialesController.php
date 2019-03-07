@@ -22,10 +22,13 @@ class SerialesController extends Controller
             'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
         return view('seriales', compact('items'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -140,7 +143,7 @@ class SerialesController extends Controller
       $query = $query->where('estatus_solicitud', 'like', '%'.$estatus_solicitud.'%');
     }
     $query = $query->distinct();
-    $tipos_solicitud = $query->get('tipo_solicitud');
+    $tipos_solicitud = $query->get(['tipo_solicitud']);
     return $tipos_solicitud;
   }
 
@@ -151,7 +154,7 @@ class SerialesController extends Controller
       $query = $query->where('tipo_solicitud', 'like', '%'.$tipo_solicitud.'%');
     }
     $query = $query->distinct();
-    $estatus_solicitud = $query->get('estatus_solicitud');
+    $estatus_solicitud = $query->get(['estatus_solicitud']);
     return $estatus_solicitud;
   }
 

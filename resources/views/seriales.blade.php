@@ -68,7 +68,7 @@
 
     <script src="js/seriales.js" charset="utf-8"></script>
 
-    {{-- <script>
+    <!-- <script>
       $(document).ready(function() {
         $('#seriales').DataTable({
           responsive: {
@@ -205,6 +205,6 @@
         });
       } );
     </script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script> --}}
+    <script type="text/javascript" src="DataTables/datatables.min.js"></script> -->
 
 @endsection
