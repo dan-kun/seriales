@@ -22,8 +22,7 @@ class SerialesController extends Controller
             'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
-
-        /*return view('seriales', compact('items'));*/
+        return view('seriales', compact('items'));
     }
 
 

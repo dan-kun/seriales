@@ -3,7 +3,7 @@
 
 @section('content')
 
-{{-- @extends('menu-test') --}}
+@extends('menu-test')
 
 <div class="container">
       <div class="row">
