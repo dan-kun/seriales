@@ -25,7 +25,10 @@
     <link href="{{ asset('DataTables/datatables.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/seriales.css') }}" rel="stylesheet">
     <link href="{{ asset('css/details.css') }}" rel="stylesheet">
+
+    <!-- Font Awesome v.5 -->
     <link href="{{ asset('css/font_awesome_5.7.2.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/font_awesome_5.7.2.js') }}" charset="utf-8"></script>
 
 
 
