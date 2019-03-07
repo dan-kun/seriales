@@ -23,8 +23,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('DataTables/datatables.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="css/seriales.css">
     <link href="{{ asset('css/details.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="../css/seriales.css">
 
 
 
@@ -40,7 +40,7 @@
     <div id="app" class="container-fluid p-0">
         <nav  class="nav navbar navbar-expand-lg navbar-dark bg-dark  ">
               <figure  class="logo pr-4 pt-3">
-                <img style= " height:56px " src="../images/logocantv.png">
+                <img style= " height:56px " src="images/logocantv.png">
               </figure>
                 <a class="navbar-brand" href="{{ url('/home') }}">
                     {{ config('app.name', 'Laravel') }}

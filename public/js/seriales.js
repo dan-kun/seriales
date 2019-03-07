@@ -86,8 +86,7 @@ $(document).ready(function(){
 
   function getCombos() {
     var url = 'http://localhost/seriales/public/api/seriales/combos/Todos/Todos/';
-    $.getJSON(url)
-      .done(function(data) {
+    $.getJSON(url).done(function(data) {
         datos = data;
         setComboTipoSolicitud(datos.combo_tipo_solicitud, 'tipo_solicitud');
         setComboEstatusSolicitud(datos.combo_estatus_solicitud, 'estatus_solicitud');

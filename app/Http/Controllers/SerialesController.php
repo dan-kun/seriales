@@ -23,7 +23,7 @@ class SerialesController extends Controller
             'Listar caso'    => ['url' => 'Listar_caso'],
         ];
 
-        /*return view('seriales', compact('items'));*/
+        return view('seriales', compact('items'));
     }
     
 

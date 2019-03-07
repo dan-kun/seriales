@@ -3,7 +3,7 @@
 
 @section('content')
 
-{{-- @extends('menu-test') --}}
+@extends('menu-test')
 
 <div class="container">
       <div class="row">
@@ -47,7 +47,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-12 col-md-12">
+        <div class="col-10 col-md-10 offset-1">
           <br>
           <table id="seriales" class="table table-striped table-bordered dt-responsive nowrap display">
             <thead>
@@ -58,7 +58,7 @@
                 <th class="text-center">Tipo de Solicitud</th>
                 <th class="text-center">Estatus de Solicitud</th>
                 <th class="text-center">Fecha</th>
-                <th class="col-sm-1 text-center">&nbsp;</th>
+                <th class="text-center">Detalle</th>
               </tr>
             </thead>
           </table>
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <script src="../js/seriales.js" charset="utf-8"></script>
+    <script src="js/seriales.js" charset="utf-8"></script>
 
     {{-- <script>
       $(document).ready(function() {
