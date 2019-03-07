@@ -59,7 +59,7 @@
     <div class="row">
       <div class="col-10 col-md-10 offset-1">
         <br>
-        <table id="seriales" class="table table-striped table-bordered dt-responsive nowrap display">
+        <table id="seriales" class="table table-striped table-bordered nowrap display">
           <thead>
             <tr>
               <th class="text-center">ID</th>
