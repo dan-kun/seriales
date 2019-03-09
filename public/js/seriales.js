@@ -1,4 +1,8 @@
 $(document).ready(function(){
+
+  var host = location;
+  // console.log(host);
+
   var dtLengthMenu = "Mostrar _MENU_ registros por página";
   var dtInfo = "Página _PAGE_ de _PAGES_";
   var dtSearch = "Buscar:";
@@ -45,7 +49,9 @@ $(document).ready(function(){
       serie_hexadecimal = $('#serie_hexadecimal').val();
     }
 
-    var url = 'http://localhost/seriales/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    // var url = 'http://localhost/proyecto_cantv/public/api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    // var url = host + '/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    var url = 'api/seriales/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
     $.getJSON(url).done(function(data) {
       datos = data;
       // alert(datos);
@@ -58,6 +64,11 @@ $(document).ready(function(){
           {data: 'tipo_solicitud'},
           {data: 'estatus_solicitud'},
           {data: 'fecha'},
+          {
+            data: function(row, type, set) {
+              return getSerialDetailButton(row.id);
+            }
+          },
         ],
         "destroy": true,
         "ordering": true,
@@ -85,9 +96,10 @@ $(document).ready(function(){
   }
 
   function getCombos() {
-    var url = 'http://localhost/seriales/public/api/seriales/combos/Todos/Todos/';
-    $.getJSON(url)
-      .done(function(data) {
+    // var url = 'http://localhost/proyecto_cantv/public/api/seriales/combos/Todos/Todos/';
+    // var url = host + '/combos/Todos/Todos/';
+    var url = 'api/seriales' + '/combos/Todos/Todos/';
+    $.getJSON(url).done(function(data) {
         datos = data;
         setComboTipoSolicitud(datos.combo_tipo_solicitud, 'tipo_solicitud');
         setComboEstatusSolicitud(datos.combo_estatus_solicitud, 'estatus_solicitud');
@@ -125,6 +137,52 @@ $(document).ready(function(){
 
   $('#serie_decimal, #serie_hexadecimal').on('keyup', function(){
     getSeriales();
+  })
+
+  // Esta funcion se encarga de retornar como un string un enlace <a></a> que en
+  // el href construye la url que apunta al webservice de detalle de de seriales
+  // la url relativa es "seriales/" + id que se recibe como parametro. De igual
+  // manera se agrega la clase btn-detail para que pueda ser referencia desde el
+  // evento onclick si se pulsa sobre un enlace que requiera mostrar el modal.
+  // El atributo: data-target="#exampleModalLong" es el disparador de eventos
+  // mostrar el modal que ya ha sido previamente maquetado en el html usando
+  // bootstrap.
+  function getSerialDetailButton(id){
+    return '<a id="'+id+'" href="seriales/'+id+'" class="bg-white text-primary btn-detail" data-toggle="modal" data-target="#exampleModalLong"><i class="fas fa-info-circle fa-2x"></i></a>';
+  }
+
+  // Con esta funcion se actualizan los valores del modal segun se pulse el
+  // enlace respectivo de cada fila, el llamado se hace apuntando al <body> en
+  // el html, a traves de la clase que indica la tabla con el id seriales, su
+  // <tbody> y los enlaces que tengan como clase .btn-detail
+  $("body").on('click', '#seriales tbody tr a.btn-detail', function(event){
+    // Evita que el enlace <a></a> continue con su comportamiento por defecto
+    event.preventDefault();
+    // Se obtiene el valor de la ruta al webservice de detalle desde el atributo
+    // href del <a></a>, esto a traves de la formacion de la ruta relativa en el
+    // html con la forma seriales/{id}
+    var url = this.href;
+    var id = this.id;
+    url = host + '/' + id;
+    // Se inicializa la variable datos
+    var datos = "";
+    // Se consulta el webservice usando la url obtenida del href del enlace
+    $.getJSON(url)
+    .done(function(data) {
+      datos = data;
+      // Se sobreescriben los valores de los span que muestran los valores del
+      // detalle, el modal es de la suite bootstrap y se idenfica con el id
+      // exampleModalLong en el html respectivo
+      $(".serial-serie-dec").text(datos.serie_dec);
+      $(".serial-serie-hex").text(datos.serie_hex);
+      $(".serial-tipo-sol").text(datos.tipo_solicitud);
+      $(".serial-estatus-sol").text(datos.estatus_solicitud);
+      $(".serial-fec").text(datos.fecha);
+    })
+    .fail(function(jqxhr, textStatus, error) {
+      var err = textStatus + ", " + error;
+      console.log("Error obteniendo el detalle del serial: " + err);
+    });
   })
 
 });

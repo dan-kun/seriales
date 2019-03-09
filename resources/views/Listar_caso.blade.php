@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-@extends('menu-test')
 
 @section('content')
 <div class="container">

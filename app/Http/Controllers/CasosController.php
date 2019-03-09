@@ -16,11 +16,12 @@ class CasosController extends Controller
      */
     public function index()
     {
+      // die('aqui');
 
         $items = [
             'Gestion'          => ['submenu' => [
                                         'Gestion de Casos' => [ 'url' => 'casos'],
-                                        'Gestion de Seriales' => ['url' => 'seriales']
+                                        'Gestion de Seriales' => ['url' => 'api/seriales']
             ]
         ],
             'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
@@ -32,7 +33,7 @@ class CasosController extends Controller
 */
         return view('casos', compact('items'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.

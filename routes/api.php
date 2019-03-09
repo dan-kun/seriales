@@ -41,11 +41,21 @@ Route::get(
 );
 Route::get('seriales/{serial}', 'SerialesController@detalle');
 
-Route::get(
-    'seriales', function(){
-      return view('seriales');
-    }
-);
+// Route::get(
+//     'seriales', function(){
+//       $items = [
+//         'Gestion' => [
+//           'submenu' => [
+//             'Gestion de Casos' => [ 'url' => 'casos'],
+//             'Gestion de Seriales' => ['url' => 'seriales']
+//           ]
+//       ],
+//         'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
+//         'Listar caso' => ['url' => 'Listar_caso'],
+//       ];
+//       return view('seriales', compact('items'));
+//     }
+// )->name('listado_seriales');
 
 Route::get(
     'seriales/combos/{tipo_solicitud}/{estatus_solicitud}/',
