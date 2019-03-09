@@ -1,8 +1,8 @@
-@extends('layouts.app1')
+@extends('layouts.app2')
 
 @section('content')
 
-@extends('menu-test')
+{{-- @extends('menu-test') --}}
 
   <div class="container">
     <div class="row">

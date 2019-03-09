@@ -16,6 +16,7 @@ class CasosController extends Controller
      */
     public function index()
     {
+      // die('aqui');
 
         $items = [
             'Gestion'          => ['submenu' => [
@@ -32,7 +33,7 @@ class CasosController extends Controller
 */
         return view('casos', compact('items'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.

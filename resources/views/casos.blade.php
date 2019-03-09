@@ -1,176 +1,77 @@
-@extends('layouts.app1')
-
-@extends('menu-test')
+@extends('layouts.app2')
 
 @section('content')
+
   <div class="container">
-    <table id="casos" class="table table-striped table-bordered"  >
-
-      <thead>
-        <tr>
-          <th class="text-center">Caso</th>
-          <th class="text-center">Codigo de Trasacción</th>
-          <th class="text-center">Solicitante</th>
-          <th class="text-center"> Lugar Ocurrencia</th>
-          <th class="text-center">Resumen </th>
-          <th class="text-center">Estatus</th>
-          <th class="text-center" >Fecha </th>
-          <th class="text-center" >&nbsp; </th>
-
-        </tr>
-      </thead>
-      <tfoot>
-        <tr>
-          <th>&nbsp; </th>
-          <th>&nbsp; </th>
-          <th>&nbsp; </th>
-          <th>&nbsp; </th>
-          <th>&nbsp; </th>
-          <th>Estatus</th>
-          <th>&nbsp; </th>
-          <th>&nbsp; </th>
-
-        </tr>
-      </tfoot>
-    </table>
-
-
+    <div class="row">
+      <div class="col-10 col-md-10 offset-1">
+        <br><br>
+        <div class="card">
+          <div class="card-header">
+            <div class="row justify-content-between">
+              <div class="col-4 col-md-4">
+                <span class="text-left" style="padding-left: 20px;">Tabla de Casos</span>
+              </div>
+              <div class="col-4 col-md-4 text-right">
+                <span class="bg-white text-success"><i class="fas fa-file-csv fa-2x"></i></span>
+                &nbsp;
+                <span class="bg-white text-danger"><i class="fas fa-file-pdf fa-2x"></i></i></span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div id="container_tipo_caso" class="col-3">
+                <div class="form-group">
+                  <label for="tipo_caso">Caso:</label>
+                  <select class="form-control tipo_caso" id="tipo_caso">
+                    <option value="">Todos</option>
+                  </select>
+                </div>
+              </div>
+              <div id="container_codigo_caso" class="col-3">
+                <div class="form-group">
+                  <label for="codigo_caso">C&oacute;digo:</label>
+                  <select class="form-control codigo_caso" id="codigo_caso">
+                    <option value="">Todos</option>
+                  </select>
+                </div>
+              </div>
+              <div id="container_estatus_caso" class="col-3">
+                <div class="form-group">
+                  <label for="estatus_caso">Estatus:</label>
+                  <input class="form-control" type="text" placeholder="Escriba una serie" id="estatus_caso">
+                </div>
+              </div>
+              <div id="container_lugar_caso" class="col-3">
+                <div class="form-group">
+                  <label for="lugar_caso">Lugar:</label>
+                  <input class="form-control" type="text" placeholder="Escriba una serie" id="lugar_caso">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-10 col-md-10 offset-1">
+        <br>
+        <table id="casos" class="table table-striped table-bordered"  >
+          <thead>
+            <tr>
+              <th class="text-center">Caso</th>
+              <th class="text-center">Codigo de Trasacción</th>
+              <th class="text-center">Solicitante</th>
+              <th class="text-center">Lugar Ocurrencia</th>
+              <th class="text-center">Resumen</th>
+              <th class="text-center">Estatus</th>
+              <th class="text-center">Fecha</th>
+              <th class="text-center">&nbsp;</th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
   </div>
-
-    <script>
-      $(document).ready(function() {
-        $('#casos').DataTable({
-
-          responsive: {
-            details: {
-                display: $.fn.dataTable.Responsive.display.modal( {
-                    header: function ( row ) {
-                        return 'Detalles de su selección';
-                    }
-                } ),
-                renderer: $.fn.dataTable.Responsive.renderer.tableAll( {
-                    tableClass: 'table'
-                } )
-            }
-        },
-
-          "autoWidth": true,
-          "processing": true,
-          "ServerSide": true,
-          "dom": 'f<"clear">lr<"dt-buttons"B>tp',
-          lengthMenu: [[10, 25, 50, 100, 200, -1], [10, 25, 50, 100, 200, "All"]],
-          "ajax": "{{ url('api/casos') }}",
-          "columns": [
-            {data: 'num_caso'},
-            {data: 'cod_trasaccion'},
-            {data: 'solicitante'},
-            {data: 'lugar_ocurrencia'},
-            {data: 'descripcion'},
-            {data: 'status'},
-            {data: 'fecha'},
-            {data: 'btn'},
-          ],
-
-          buttons: [
-            'copy',
-
-          {
-            extend: 'pdfHtml5',
-            title: 'Data export',
-            className: 'btn',
-            text: " Exportar en Pdf",
-            filename: 'Casos',
-
-            exportOptions: {
-              columns: [0, 1, 2, 3, 4, 5,6],
-              // modifier: {
-              //   page: 'current'
-              // }
-            },
-            customize: function ( doc ) {
-             doc.pageMargins = [ 70 , 70 , 100 , 60 ];
-             doc.content.splice(0,1);
-             doc.styles.tableHeader.fontSize = 10;
-             var now = new Date();
-						 var jsDate = now.getDate()+'-'+(now.getMonth()+1)+'-'+now.getFullYear();
-             doc['header']=(function(){
-               return {
-                columns: [
-                  {
-                  alignment: 'center',
-                  italics:  true,
-                  text: 'Casos',
-                  fontSize: 20,
-                },
-              ],
-              margin: 20
-               }
-             });
-             doc['footer']=(function(page, pages) {
-							return {
-								columns: [
-									{
-										alignment: 'left',
-                    fontSize: 12,
-										text: ['Creado el: ', { text: jsDate.toString() }]
-									},
-									{
-										alignment: 'right',
-                    fontSize: 12,
-										text: ['pagina ', { text: page.toString() },	' of ',	{ text: pages.toString() }]
-									}
-								],
-								margin: 100
-							}
-						});
-             pageSize = 'A5';
-             pageOrientation = 'landscape';
-            //  var objLayout = {};
-						// objLayout['hLineWidth'] = function(i) { return .5; };
-						// objLayout['vLineWidth'] = function(i) { return .5; };
-						// objLayout['hLineColor'] = function(i) { return '#aaa'; };
-						// objLayout['vLineColor'] = function(i) { return '#aaa'; };
-						// objLayout['paddingLeft'] = function(i) { return 4; };
-						// objLayout['paddingRight'] = function(i) { return 4; };
-						// doc.content[0].layout = objLayout;
-             var cols = [];
-             cols[0] = {text: 'Left part', alignment: 'left', margin:[20] };
-             cols[1] = {text: 'Right part', alignment: 'right', margin:[0,0,20] };
-             var objFooter = {};
-             objFooter['columns'] = cols;
-             doc['footer']=objFooter;
-           },
-        },
-        ],
-
-          "language": {
-
-            "url": "//cdn.datatables.net/plug-ins/9dcbecd42ad/i18n/Spanish.json"
-
-        },
-
-        initComplete: function () {
-            this.api().columns([5]).every( function () {
-                var column = this;
-                var select = $('<select><option value="">Estatus</option></select>')
-                    .appendTo( $(column.footer()).empty() )
-                    .on( 'change', function () {
-                        var val = $.fn.dataTable.util.escapeRegex(
-                            $(this).val()
-                        );
-
-                        column
-                            .search( val ? '^'+val+'$' : '', true, false )
-                            .draw();
-                    } );
-
-                column.data().unique().sort().each( function ( d, j ) {
-                    select.append( '<option value="'+d+'">'+d+'</option>' )
-                } );
-            } );
-        }
-        });
-      } );
-    </script>
-    <script type="text/javascript" src="DataTables/datatables.min.js"></script>
 @endsection
