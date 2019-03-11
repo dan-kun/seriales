@@ -169,7 +169,7 @@ $(document).ready(function(){
     // Se consulta el webservice usando la url obtenida del href del enlace
     $.getJSON(url)
     .done(function(data) {
-      datos = data;
+      datos = data[0];
       // Se sobreescriben los valores de los span que muestran los valores del
       // detalle, el modal es de la suite bootstrap y se idenfica con el id
       // exampleModalLong en el html respectivo
