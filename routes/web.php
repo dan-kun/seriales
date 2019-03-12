@@ -22,5 +22,9 @@ Route::resource('/denuncia_almacen', 'DenunciaController');
 // Route::resource('/seriales', 'SerialesController');
 /*Route::get('menu-test', 'MenuController@index');*/
 
+// URLs para el modulo de seriales
 Route::get('seriales', function(){return view('seriales');})->name('listado_seriales');
+Route::get('seriales/{id}', 'SerialesController@detalle');
+// URLs para el modulo de casos
 Route::get('casos', function(){return view('casos');})->name('listado_casos');
+Route::get('casos/{id}', 'CasosController@show');

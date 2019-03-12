@@ -39,7 +39,7 @@ Route::get(
   'seriales/{tipo_solicitud}/{estatus_solicitud}/{serie_decimal}/{serie_hexadecimal}/',
   'SerialesController@listado'
 );
-Route::get('seriales/{serial}', 'SerialesController@detalle');
+Route::get('seriales/{id}', 'SerialesController@detalle');
 
 // Route::get(
 //     'seriales', function(){
@@ -61,3 +61,10 @@ Route::get(
     'seriales/combos/{tipo_solicitud}/{estatus_solicitud}/',
     'SerialesController@getCombosFiltros'
 );
+
+Route::get(
+  'casos/{codigo_caso}/{estatus_caso}/{fecha_desde}/{fecha_hasta}/',
+  'CasosController@index'
+);
+
+Route::get('casos/combos/', 'CasosController@getCombosFiltros');
