@@ -14,24 +14,31 @@ class CasosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta)
     {
-      // die('aqui');
-
-        $items = [
-            'Gestion'          => ['submenu' => [
-                                        'Gestion de Casos' => [ 'url' => 'casos'],
-                                        'Gestion de Seriales' => ['url' => 'api/seriales']
-            ]
-        ],
-            'Denuncia de almacen' => ['url' => 'denuncia_almacen'],
-            'Listar caso'    => ['url' => 'Listar_caso'],
-        ];
-
-
-        /*return view('casos', compact('casos','items', 'users'));
-*/
-        return view('casos', compact('items'));
+      $listado_casos = [];
+      $query = Caso::query();
+      if(isset($codigo_caso) and ($codigo_caso != 'Todos')){
+        $query = $query->where('cod_trasaccion', 'like', '%'.$codigo_caso.'%');
+      }
+      if(isset($estatus_caso) and ($estatus_caso != 'Todos')){
+        $query = $query->where('status', 'like', '%'.$estatus_caso.'%');
+      }
+      if(isset($fecha_desde) and ($fecha_desde != 'Todos')){
+        $from = date($fecha_desde);
+      }
+      else{
+        $from = date('01-01-1900');
+      }
+      if(isset($fecha_hasta) and ($fecha_hasta != 'Todos')){
+        $to = date($fecha_hasta);
+      }
+      else{
+        $to = date('d-m-Y');
+      }
+      $query = $query->whereBetween('fecha', [$from, $to]);
+      $listado_casos = $query->get();
+      return $listado_casos;
     }
 
 
@@ -64,7 +71,8 @@ class CasosController extends Controller
      */
     public function show($id)
     {
-        //
+      $caso = Caso::where('id', '=', $id)->get();
+      return $caso;
     }
 
     /**
@@ -100,4 +108,24 @@ class CasosController extends Controller
     {
         //
     }
+
+    public function getCombosFiltros()
+    {
+      $combos = [];
+      $combo_estatus_solicitud = $this->getFiltroEstatusSolicitud();
+      $combos = ['combo_estatus_solicitud' => $combo_estatus_solicitud];
+      return $combos;
+    }
+
+    public function getFiltroEstatusSolicitud(){
+      $estatus_solicitud = [];
+      $query = Caso::query();
+      // if(isset($tipo_solicitud) and ($tipo_solicitud != 'Todos')){
+      //   $query = $query->where('status', 'like', '%'.$tipo_solicitud.'%');
+      // }
+      $query = $query->distinct();
+      $estatus_solicitud = $query->get(['status']);
+      return $estatus_solicitud;
+    }
+
 }

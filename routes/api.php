@@ -61,3 +61,10 @@ Route::get(
     'seriales/combos/{tipo_solicitud}/{estatus_solicitud}/',
     'SerialesController@getCombosFiltros'
 );
+
+Route::get(
+  'casos/{codigo_caso}/{estatus_caso}/{fecha_desde}/{fecha_hasta}/',
+  'CasosController@index'
+);
+
+Route::get('casos/combos/', 'CasosController@getCombosFiltros');
