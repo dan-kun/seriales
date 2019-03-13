@@ -68,3 +68,13 @@ Route::get(
 );
 
 Route::get('casos/combos/', 'CasosController@getCombosFiltros');
+
+Route::get(
+  'casos/excel_export/{codigo_caso}/{estatus_caso}/{fecha_desde}/{fecha_hasta}/',
+  'CasosController@listadoCasosExport'
+);
+
+Route::get(
+  'seriales/excel_export/{tipo_solicitud}/{estatus_solicitud}/{serie_decimal}/{serie_hexadecimal}/',
+  'SerialesController@listadoSerialesExport'
+);

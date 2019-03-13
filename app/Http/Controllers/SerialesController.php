@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Seriales;
+
+
 class SerialesController extends Controller
 {
     /**
@@ -155,5 +157,8 @@ class SerialesController extends Controller
     return $estatus_solicitud;
   }
 
+  public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){
+
+  }
 
 }
