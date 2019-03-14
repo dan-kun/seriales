@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Exports;
-use App\Caso;
+use App\Seriales;
 
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -13,37 +13,29 @@ class SerialesExcelExport implements FromQuery
 
   use Exportable;
 
-  public function __construct(string $codigo_caso, string $estatus_caso, string $fecha_desde, string $fecha_hasta)
+  public function __construct(string $tipo_solicitud, string $estatus_solicitud, string $serie_decimal, string $serie_hexadecimal)
   {
-    $this->codigo = $codigo_caso;
-    $this->estatus = $estatus_caso;
-    $this->fecha_ini = $fecha_desde;
-    $this->fecha_fin = $fecha_hasta;
+    $this->tipo = $tipo_solicitud;
+    $this->estatus = $estatus_solicitud;
+    $this->serie_decimal = $serie_decimal;
+    $this->serie_hexadecimal = $serie_hexadecimal;
   }
 
   public function query()
   {
     $query = Seriales::query();
-    // if(isset($this->codigo) and ($this->codigo != 'Todos')){
-    //   $query = $query->where('cod_trasaccion', 'like', '%'.$this->codigo.'%');
-    // }
-    // if(isset($this->estatus) and ($this->estatus != 'Todos')){
-    //   $query = $query->where('status', 'like', '%'.$this->estatus.'%');
-    // }
-    // if(isset($this->fecha_ini) and ($this->fecha_ini != 'Todos')){
-    //   $from = date($this->fecha_ini);
-    // }
-    // else{
-    //   $from = date('01-01-1900');
-    // }
-    // if(isset($this->fecha_fin) and ($this->fecha_fin != 'Todos')){
-    //   $to = date($this->fecha_fin);
-    // }
-    // else{
-    //   $to = date('d-m-Y');
-    // }
-    // $query = $query->whereBetween('fecha', [$from, $to]);
-    // $listado_casos = $query->get();
+    if(isset($this->tipo) and ($this->tipo != 'Todos')){
+      $query = $query->where('tipo_solicitud', 'like', '%'.$this->tipo.'%');
+    }
+    if(isset($this->estatus) and ($this->estatus != 'Todos')){
+      $query = $query->where('estatus_solicitud', 'like', '%'.$this->estatus.'%');
+    }
+    if(isset($this->serie_decimal) and ($this->serie_decimal != 'Todos')){
+      $query = $query->where('serie_dec', 'like', '%'.$this->serie_decimal.'%');
+    }
+    if(isset($this->serie_hexadecimal) and ($this->serie_hexadecimal != 'Todos')){
+      $query = $query->where('serie_hex', 'like', '%'.$this->serie_hexadecimal.'%');
+    }
     return $query;
   }
 
