@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Seriales;
+use App\Exports\SerialesExcelExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 
 class SerialesController extends Controller
@@ -158,7 +162,10 @@ class SerialesController extends Controller
   }
 
   public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){
-
+    return Excel::download(
+      new SerialesExcelExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal),
+      'listado_seriales.xlsx'
+    );
   }
 
 }

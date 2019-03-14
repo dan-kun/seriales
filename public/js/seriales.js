@@ -11,6 +11,7 @@ $(document).ready(function(){
   var dtInfoFiltered = "(filtered from _MAX_ total records)";
   var dtPrevious = "Anterior";
   var dtNext = "Siguiente";
+
   function getSeriales() {
     var tipo_solicitud = '';
     var estatus_solicitud = '';
@@ -183,6 +184,51 @@ $(document).ready(function(){
       var err = textStatus + ", " + error;
       console.log("Error obteniendo el detalle del serial: " + err);
     });
+  })
+
+  function getCasosExcel(){
+    // Inicializacion de las variables
+    var tipo_solicitud = '';
+    var estatus_solicitud = '';
+    // Capturando el valor seleccionado en el Select de tipo de solicitud
+    var tipo = $('#tipo_solicitud').val();
+    if(tipo == ""){
+      tipo_solicitud = 'Todos';
+    }
+    else{
+      tipo_solicitud = $('#tipo_solicitud').val();
+    }
+    // Capturando el valor seleccionado en el Select de estatus de solicitud
+    var estatus = $('#estatus_solicitud').val();
+    if(estatus == ""){
+      estatus_solicitud = 'Todos';
+    }
+    else{
+      estatus_solicitud = $('#estatus_solicitud').val();
+    }
+    // Capturando el valor escrito en el Input de Serie Decimal
+    var serie_dec = $('#serie_decimal').val();
+    if(serie_dec == ""){
+      serie_decimal = 'Todos';
+    }
+    else{
+      serie_decimal = $('#serie_decimal').val();
+    }
+    // Capturando el valor escrito en el Input de Serie Hexadecimal
+    var serie_hex = $('#serie_hexadecimal').val();
+    if(serie_hex == ""){
+      serie_hexadecimal = 'Todos';
+    }
+    else{
+      serie_hexadecimal = $('#serie_hexadecimal').val();
+    }
+    var url = 'api/seriales/excel_export/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    window.location.href = url;
+  }
+
+  $('#exportar_excel').on('click', function(event){
+    event.preventDefault();
+    getCasosExcel();
   })
 
 });
