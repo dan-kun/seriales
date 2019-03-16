@@ -19,9 +19,9 @@
     <link href="{{ asset('css/font_awesome_5.7.2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}" ></script>
+    {{-- <!-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}" ></script>
     <script src="{{ asset('js/popper.min.js') }}" ></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" ></script> -->
+    <script src="{{ asset('js/bootstrap.min.js') }}" ></script> --> --}}
     <script src="{{ asset('DataTables/datatables.min.js') }}" ></script>
     <script src="{{ asset('js/font_awesome_5.7.2.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" charset="utf-8"></script>
