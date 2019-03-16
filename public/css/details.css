@@ -17,7 +17,7 @@
 {
   color: white;
 }
-.nav
+.dan
 {
   background: linear-gradient(90deg,#1e5372,#273b47 25%,#1c3643);
 }
@@ -33,6 +33,11 @@
 }
 
 #footer a
+{
+  color: white;
+}
+
+.navbar-light .navbar-nav .nav-link
 {
   color: white;
 }

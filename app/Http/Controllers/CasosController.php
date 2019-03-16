@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Caso;
+use App\Exports\CasosExcelExport;
+
+use Maatwebsite\Excel\Facades\Excel;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 
 class CasosController extends Controller
@@ -126,6 +130,16 @@ class CasosController extends Controller
       $query = $query->distinct();
       $estatus_solicitud = $query->get(['status']);
       return $estatus_solicitud;
+    }
+
+    public function listadoCasosExport($codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta)
+    {
+        return Excel::download(
+          new CasosExcelExport($codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta),
+          'listado_casos.xlsx'
+        );
+        // return (new CasosExcelExport)->download('invoices.xlsx');
+
     }
 
 }

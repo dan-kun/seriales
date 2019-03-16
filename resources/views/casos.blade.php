@@ -13,7 +13,9 @@
                 <span class="text-left" style="padding-left: 20px;">Tabla de Casos</span>
               </div>
               <div class="col-4 col-md-4 text-right">
-                <span class="bg-white text-success"><i class="fas fa-file-csv fa-2x"></i></span>
+                <span class="bg-white text-success">
+                  <a id="exportar_excel" href=""><i class="fas fa-file-csv fa-2x"></i></a>
+                </span>
                 &nbsp;
                 <span class="bg-white text-danger"><i class="fas fa-file-pdf fa-2x"></i></i></span>
               </div>
