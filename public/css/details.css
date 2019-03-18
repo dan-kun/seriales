@@ -17,9 +17,9 @@
 {
   color: white;
 }
-.nav
+.dan
 {
-  background: linear-gradient(90deg,#789fb3,#273b47 25%,#1e5372);
+  background: linear-gradient(90deg,#789fb3,#273b47 25%,#1e5372)!important;
 }
 
 #cuadro
@@ -35,4 +35,24 @@
 #footer a
 {
   color: white;
+}
+
+.navbar-light .navbar-nav .nav-link
+{
+  color: white;
+}
+
+a#navbarDropdown.nav-link.dropdown-toggle 
+{
+  color: rgba(255, 255, 255, 0.9);
+}
+
+a#menuGestionDropdown.nav-link.dropdown-toggle 
+{
+  color: rgba(255, 255, 255, 0.9);
+}
+
+li.nav-item a.nav-link
+{
+  color: rgba(255, 255, 255, 0.9);
 }
