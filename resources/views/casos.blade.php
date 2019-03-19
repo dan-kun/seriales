@@ -17,7 +17,8 @@
                   <a id="exportar_excel" href=""><i class="fas fa-file-csv fa-2x"></i></a>
                 </span>
                 &nbsp;
-                <span class="bg-white text-danger"><i class="fas fa-file-pdf fa-2x"></i></i></span>
+                <span class="bg-white text-danger">
+                  <a id="exportar_pdf" href=""><i class="fas fa-file-pdf fa-2x"></i></a></span>
               </div>
             </div>
           </div>

@@ -9,6 +9,7 @@ use App\Exports\CasosExcelExport;
 
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+use PDF;
 
 
 class CasosController extends Controller
@@ -138,6 +139,15 @@ class CasosController extends Controller
           new CasosExcelExport($codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta),
           'listado_casos.xlsx'
         );
+        // return (new CasosExcelExport)->download('invoices.xlsx');
+
+    }
+
+    public function listadoCasosPdf($codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta)
+    {
+        $listado_casos = {};
+        $pdf = PDF::loadView('casos', $codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta );
+        return $pdf->download('casos.pdf');
         // return (new CasosExcelExport)->download('invoices.xlsx');
 
     }

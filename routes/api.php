@@ -59,6 +59,12 @@ Route::get(
   'CasosController@listadoCasosExport'
 );
 
+// Ruta para exportar listado de casos a PDF
+Route::get(
+  'casos/pdf_export/{codigo_caso}/{estatus_caso}/{fecha_desde}/{fecha_hasta}/',
+  'CasosController@listadoCasosPdf'
+);
+
 // Ruta para exportar listado de seriales a Excel
 Route::get(
   'seriales/excel_export/{tipo_solicitud}/{estatus_solicitud}/{serie_decimal}/{serie_hexadecimal}/',

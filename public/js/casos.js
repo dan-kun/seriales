@@ -138,6 +138,8 @@ $(document).ready(function(){
   getCombos();
   getCasos();
 
+//Exportacion excel
+
   function getCasosExcel(){
     // Inicializacion de las variables
     var codigo_caso = '';
@@ -177,6 +179,49 @@ $(document).ready(function(){
   $('#exportar_excel').on('click', function(event){
     event.preventDefault();
     getCasosExcel();
+  })
+
+//Exportación pdf
+
+function getCasosPdf(){
+    // Inicializacion de las variables
+    var codigo_caso = '';
+    var estatus_caso = '';
+    var codigo = $('#codigo_caso').val();
+    if(codigo == ""){
+      codigo_caso = 'Todos';
+    }
+    else{
+      codigo_caso = $('#codigo_caso').val();
+    }
+    var estatus = $('#estatus_caso').val();
+    if(estatus == ""){
+      estatus_caso = 'Todos';
+    }
+    else{
+      estatus_caso = $('#estatus_caso').val();
+    }
+    var fecha_ini = $('#fecha_desde').val();
+    if(fecha_ini == ""){
+      fecha_desde = 'Todos';
+    }
+    else{
+      fecha_desde = $('#fecha_desde').val();
+    }
+    var fecha_fin = $('#fecha_hasta').val();
+    if(fecha_fin == ""){
+      fecha_hasta = 'Todos';
+    }
+    else{
+      fecha_hasta = $('#fecha_hasta').val();
+    }
+    var url = 'api/casos/pdf_export/' + codigo_caso + '/' + estatus_caso + '/' + fecha_desde + '/' + fecha_hasta + '/';
+    window.location.href = url;
+  }
+
+  $('#exportar_pdf').on('click', function(event){
+    event.preventDefault();
+    getCasosPdf();
   })
 
 });
