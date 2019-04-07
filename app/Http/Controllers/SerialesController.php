@@ -161,6 +161,23 @@ class SerialesController extends Controller
     return $estatus_solicitud;
   }
 
+  public function graficarTipoOperacionSeriales($tipo_operacion, $year){
+    $serieTipoOperacion = [];
+    $query = Seriales::query();
+    if(isset($tipo_operacion) and ($tipo_operacion != '')){
+      $query = $query->where('tipo_solicitud', 'like', '%'.$tipo_operacion.'%');
+    }
+    if(isset($year) and ($year != '')){
+      $query = $query->whereYear('fecha', '=', $year);
+    }
+    $query = $query->selectRaw(
+      'COUNT(*) as cantidad,
+      extract(month from fecha) AS mes'
+    )->groupBy('mes');
+    $serieTipoOperacion = $query->get();
+    return $serieTipoOperacion;
+  }
+
   public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){
     return Excel::download(
       new SerialesExcelExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal),
