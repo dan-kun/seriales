@@ -13,6 +13,34 @@
 
 
 <script type="text/javascript">
+
+  function getSerieTipoOperacion(tipo_operacion, anio){
+    var url = 'api/seriales' + '/' + tipo_operacion + '/' + anio + '/';
+    // $.getJSON(url).done(function(data) {
+    //   datos = data;
+    //   this.inclusion = datos;
+    // })
+    // .fail(function(jqxhr, textStatus, error) {
+    //   var err = textStatus + ", " + error;
+    //   console.log("Error obteniendo las series para tipo de operacion: " + err);
+    // });
+    var resultado = [];
+    $.ajax({
+      url: url,
+      async: false,
+      dataType: 'json',
+      success: function (data) {
+        resultado = data;
+      }
+    });
+    return resultado;
+  }
+
+  var inclusion = getSerieTipoOperacion("Inclusión", 2018);
+  var exclusion = getSerieTipoOperacion("Exclusión", 2018);
+  // alert(inclusion);
+  // getSerieTipoOperacion("Exclusión", 2018);
+
     Highcharts.chart('container', {
     chart: {
         type: 'column'
@@ -62,11 +90,11 @@
     },
     series: [{
         name: 'Exclusion',
-        data: []
+        data: inclusion
 
     }, {
         name: 'Inclusion',
-        data: []
+        data: exclusion
 
     }]
 });

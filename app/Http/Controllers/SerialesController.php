@@ -171,11 +171,15 @@ class SerialesController extends Controller
       $query = $query->whereYear('fecha', '=', $year);
     }
     $query = $query->selectRaw(
-      'COUNT(*) as cantidad,
-      extract(month from fecha) AS mes'
+      'COUNT(*) as cantidad, extract(month from fecha) AS mes'
     )->groupBy('mes');
     $serieTipoOperacion = $query->get();
-    return $serieTipoOperacion;
+    $meses_operaciones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    foreach($serieTipoOperacion as $meses){
+      $meses_operaciones[$meses->mes - 1] = $meses->cantidad;
+    }
+    // return $serieTipoOperacion;
+    return $meses_operaciones;
   }
 
   public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){
