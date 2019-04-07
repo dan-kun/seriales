@@ -64,3 +64,9 @@ Route::get(
   'seriales/excel_export/{tipo_solicitud}/{estatus_solicitud}/{serie_decimal}/{serie_hexadecimal}/',
   'SerialesController@listadoSerialesExport'
 );
+
+// Ruta para obtener Tipo de operacion filtrando por a#os
+Route::get(
+  'seriales/{tipo_operacion}/{year}/',
+  'SerialesController@graficarTipoOperacionSeriales'
+);
