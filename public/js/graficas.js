@@ -22,65 +22,100 @@ $(document).ready(function(){
     return resultado;
   }
 
-  var inclusion = getSerieTipoOperacion("Inclusión", 2018);
-  var exclusion = getSerieTipoOperacion("Exclusión", 2018);
+  function graficar(tipo, anio){
 
-  Highcharts.chart('container', {
-    chart: {
-        type: 'column'
-    },
-    title: {
-        text: 'Promedio anual de Seriales Negativos'
-    },
-    subtitle: {
-        text: 'Fuente: Departamento de Fraudes, CANTV'
-    },
-    xAxis: {
-        categories: [
-            'Enero',
-            'Febrero',
-            'Marzo',
-            'Abril',
-            'Mayo',
-            'Junio',
-            'Julio',
-            'Agosto',
-            'Septiembre',
-            'Octubre',
-            'Noviembre',
-            'Diciembre'
-        ],
-        crosshair: true
-    },
-    yAxis: {
-        min: 0,
-        title: {
-            text: 'Seriales negativos'
-        }
-    },
-    tooltip: {
-        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-            '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
-        footerFormat: '</table>',
-        shared: true,
-        useHTML: true
-    },
-    plotOptions: {
-        column: {
-            pointPadding: 0.2,
-            borderWidth: 0
-        }
-    },
-    series: [{
+    var series = [];
+
+    if(tipo == '' || tipo == 'Todos'){
+      var inclusion = getSerieTipoOperacion("Inclusión", anio);
+      var exclusion = getSerieTipoOperacion("Exclusión", anio);
+      series = [{
         name: 'Exclusion',
         data: inclusion
 
-    }, {
+      }, {
         name: 'Inclusion',
         data: exclusion
 
-    }]
-  });
+      }]
+    }
+    else{
+      if(tipo == "Inclusión"){
+        var inclusion = getSerieTipoOperacion("Inclusión", anio);
+        series = [{
+          name: 'Inclusion',
+          data: inclusion
+
+        }]
+      }
+      else if(tipo == "Exclusión"){
+        var inclusion = getSerieTipoOperacion("Exclusión", anio);
+        series = [{
+          name: 'Exclusion',
+          data: exclusion
+
+        }]
+      }
+    }
+
+    // var inclusion = getSerieTipoOperacion("Inclusión", anio);
+    // var exclusion = getSerieTipoOperacion("Exclusión", anio);
+
+    Highcharts.chart('container', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Promedio anual de Seriales Negativos'
+      },
+      subtitle: {
+        text: 'Fuente: Departamento de Fraudes, CANTV'
+      },
+      xAxis: {
+        categories: [
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
+        ],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Seriales negativos'
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: series
+    });
+  }
+
+  $('#tipo_solicitud, #anio').on('change', function(){
+    var tipo = $('#tipo_solicitud').val();;
+    var anio = $('#anio').val();;
+    graficar(tipo, anio);
+  })
 
 });
