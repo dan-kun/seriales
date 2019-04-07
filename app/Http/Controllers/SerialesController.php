@@ -173,7 +173,8 @@ class SerialesController extends Controller
     $query = $query->selectRaw(
       'COUNT(*) as cantidad,
       extract(month from fecha) AS mes'
-    )->groupBy('mes');
+    )->groupBy('mes')
+    ->orderBy('mes', 'asc');
     $serieTipoOperacion = $query->get();
     return $serieTipoOperacion;
   }
