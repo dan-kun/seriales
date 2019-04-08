@@ -114,4 +114,38 @@
     <div id="container1" style="width: 90%; height: 500px; margin: 0 auto"></div>
 
 
+    <div class="container-fluid">
+    <div class="row">
+      <div class="col-10 col-md-10 offset-1">
+        <br><br>
+        <div class="card">
+          <div class="card-header">
+            <div class="row justify-content-between">
+              <div class="col-4 col-md-4">
+                <span class="text-left" style="padding-left: 20px;">Gr&aacute;ficas - Estatus</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="row">
+              <div id="container_status" class="col-3">
+                <div class="form-group">
+                  <label for="tipo12">Seleccione:</label>
+                  <select class="form-control tipo12" id="tipo12">
+                    <option value="">Todos</option>
+                    <option value="Exclusión">Exclusión</option>
+                    <option value="Inclusión">Inclusión</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+
+    <div id="container2" style="width: 90%; height: 500px; margin: 0 auto"></div>
+
+
 @endsection

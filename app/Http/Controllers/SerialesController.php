@@ -184,21 +184,30 @@ class SerialesController extends Controller
     return $meses_operaciones;
   }
 
-  public function graficarTipoOperacionSerialesAño($tipo){
-    $serieTipoOperacion = [];
+  public function graficarTipoOperacionSerialesAnio($tipo123){
+    $serieTipoOperacionAnio = [];
     $query = Seriales::query();
     if(isset($tipo) and ($tipo != '')){
-      $query = $query->where('tipo_solicitud', 'like', '%'.$tipo.'%');
+      $query = $query->where('tipo_solicitud', 'like', '%'.$tipo123.'%');
     }
 
     $query = $query->selectRaw(
       'COUNT(*) as cantidad,
       extract(year from fecha) AS ano'
-    )->groupBy('ano')
+    )
+    ->whereYear('fecha', '>=', 2010)
+    ->groupBy('ano')
     ->orderBy('ano', 'asc');
-    $serieTipoOperacion = $query->get();
+    $serieTipoOperacionAnio = $query->get();
 
-    return $serieTipoOperacion;
+    /*return $serieTipoOperacionAnio;*/
+    $anio_operaciones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    foreach($serieTipoOperacionAnio as $anio){
+      $anio_operaciones[$anio->ano - 1] = $anio->cantidad;
+    }
+    // return $serieTipoOperacion;
+    return $anio_operaciones;
 
   }
 
