@@ -72,8 +72,8 @@ Route::get(
 );
 
 Route::get(
-  'seriales/',
-  'SerialesController@graficarTipoOperacionSerialesAño'
+  'seriales_anio/{tipo}',
+  'SerialesController@graficarTipoOperacionSerialesAnio'
 );
 
 Route::get(
