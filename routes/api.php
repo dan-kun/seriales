@@ -72,6 +72,11 @@ Route::get(
 );
 
 Route::get(
+  'seriales/',
+  'SerialesController@graficarTipoOperacionSerialesAño'
+);
+
+Route::get(
   'casos/{status}/{year}',
   'CasosController@graficarTipoOperacionCasos'
 );
