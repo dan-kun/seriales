@@ -24,7 +24,7 @@ class DenunciaController extends Controller
         ];
         return view('denuncia_almacen', compact('items'));
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
