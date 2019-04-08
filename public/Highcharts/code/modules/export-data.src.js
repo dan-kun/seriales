@@ -478,7 +478,6 @@
                  *
                  * @since 6.1.0
                  */
-                openInCloud: 'Open in Highcharts Cloud',
 
                 /**
                  * Export-data module only. The text for the menu item.

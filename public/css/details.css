@@ -56,3 +56,14 @@ li.nav-item a.nav-link
 {
   color: rgba(255, 255, 255, 0.9);
 }
+
+
+  div.highcharts-data-table
+{
+  margin-left: 40%;
+}
+
+footer
+{
+  width: 100%;
+}

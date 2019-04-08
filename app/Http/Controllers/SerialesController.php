@@ -171,8 +171,10 @@ class SerialesController extends Controller
       $query = $query->whereYear('fecha', '=', $year);
     }
     $query = $query->selectRaw(
-      'COUNT(*) as cantidad, extract(month from fecha) AS mes'
-    )->groupBy('mes');
+      'COUNT(*) as cantidad,
+      extract(month from fecha) AS mes'
+    )->groupBy('mes')
+    ->orderBy('mes', 'asc');
     $serieTipoOperacion = $query->get();
     $meses_operaciones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
     foreach($serieTipoOperacion as $meses){
@@ -180,6 +182,24 @@ class SerialesController extends Controller
     }
     // return $serieTipoOperacion;
     return $meses_operaciones;
+  }
+
+  public function graficarTipoOperacionSerialesAño($tipo){
+    $serieTipoOperacion = [];
+    $query = Seriales::query();
+    if(isset($tipo) and ($tipo != '')){
+      $query = $query->where('tipo_solicitud', 'like', '%'.$tipo.'%');
+    }
+
+    $query = $query->selectRaw(
+      'COUNT(*) as cantidad,
+      extract(year from fecha) AS ano'
+    )->groupBy('ano')
+    ->orderBy('ano', 'asc');
+    $serieTipoOperacion = $query->get();
+
+    return $serieTipoOperacion;
+
   }
 
   public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){

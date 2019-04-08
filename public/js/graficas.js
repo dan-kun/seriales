@@ -40,19 +40,21 @@ $(document).ready(function(){
       }]
     }
     else{
+
+      if(tipo == "Exclusión"){
+        var exclusion = getSerieTipoOperacion("Exclusión", anio);
+        series = [{
+          name: 'Exclusion',
+          data: exclusion
+
+        }]
+      }
+
       if(tipo == "Inclusión"){
         var inclusion = getSerieTipoOperacion("Inclusión", anio);
         series = [{
           name: 'Inclusion',
           data: inclusion
-
-        }]
-      }
-      else if(tipo == "Exclusión"){
-        var inclusion = getSerieTipoOperacion("Exclusión", anio);
-        series = [{
-          name: 'Exclusion',
-          data: exclusion
 
         }]
       }
@@ -118,4 +120,125 @@ $(document).ready(function(){
     graficar(tipo, anio);
   })
 
+/*Graficas para vista de casos, donde se detalla los casos procesados y por procesar*/
+
+   function getCasoTipoOperacion(status, anio1){
+    var url = 'api/casos' + '/' + status + '/' + anio1 + '/';
+    // $.getJSON(url).done(function(data) {
+    //   datos = data;
+    //   this.inclusion = datos;
+    // })
+    // .fail(function(jqxhr, textStatus, error) {
+    //   var err = textStatus + ", " + error;
+    //   console.log("Error obteniendo las series para tipo de operacion: " + err);
+    // });
+    var resultado = [];
+    $.ajax({
+      url: url,
+      async: false,
+      dataType: 'json',
+      success: function (data) {
+        resultado = data;
+      }
+    });
+    return resultado;
+  }
+
+  function graficar1(tipo1, anio1){
+
+    var series1 = [];
+
+    if(tipo1 == '' || tipo1 == 'Todos'){
+      var procesado = getCasoTipoOperacion("Procesado", anio1);
+      var por = getCasoTipoOperacion("Por", anio1);
+      series1 = [{
+        name: 'Procesado',
+        data: procesado
+
+      }, {
+        name: 'Por procesar',
+        data: por
+
+      }]
+    }
+    else{
+
+      if(tipo1 == "Procesado"){
+        var procesado = getCasoTipoOperacion("Procesado", anio1);
+        series1 = [{
+          name: 'Procesado',
+          data: procesado
+
+        }]
+      }
+
+      if(tipo1 == "Por"){
+        var por = getCasoTipoOperacion("Por", anio1);
+        series1 = [{
+          name: 'Por procesar',
+          data: por
+
+        }]
+      }
+    }
+
+    // var inclusion = getSerieTipoOperacion("Inclusión", anio);
+    // var exclusion = getSerieTipoOperacion("Exclusión", anio);
+
+    Highcharts.chart('container1', {
+      chart: {
+        type: 'column'
+      },
+      title: {
+        text: 'Promedio anual de Casos Negativos'
+      },
+      subtitle: {
+        text: 'Fuente: Departamento de Fraudes, CANTV'
+      },
+      xAxis: {
+        categories: [
+          'Enero',
+          'Febrero',
+          'Marzo',
+          'Abril',
+          'Mayo',
+          'Junio',
+          'Julio',
+          'Agosto',
+          'Septiembre',
+          'Octubre',
+          'Noviembre',
+          'Diciembre'
+        ],
+        crosshair: true
+      },
+      yAxis: {
+        min: 0,
+        title: {
+          text: 'Casos negativos'
+        }
+      },
+      tooltip: {
+        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+        footerFormat: '</table>',
+        shared: true,
+        useHTML: true
+      },
+      plotOptions: {
+        column: {
+          pointPadding: 0.2,
+          borderWidth: 0
+        }
+      },
+      series: series1
+    });
+  }
+
+  $('#status, #anio1').on('change', function(){
+    var tipo1 = $('#status').val();;
+    var anio1 = $('#anio1').val();;
+    graficar1(tipo1, anio1);
+  }) 
 });
