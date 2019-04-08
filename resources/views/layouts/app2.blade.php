@@ -25,6 +25,8 @@
     <script src="{{ asset('DataTables/datatables.min.js') }}" ></script>
     <script src="{{ asset('js/font_awesome_5.7.2.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('js/graficas.js') }}" charset="utf-8"></script>
+    <script src="{{ asset('Highcharts/code/highcharts.js') }}" charset="utf-8"></script>
   </head>
 
   <body>
@@ -47,7 +49,7 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="{{ route('denuncia') }}">Denuncia de almac&eacute;n</a>
+              <a class="nav-link" href="{{ route('home') }}">home</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Listar Casos</a>

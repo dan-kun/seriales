@@ -41,3 +41,29 @@
 {
   color: white;
 }
+
+a#navbarDropdown.nav-link.dropdown-toggle 
+{
+  color: rgba(255, 255, 255, 0.9);
+}
+
+a#menuGestionDropdown.nav-link.dropdown-toggle 
+{
+  color: rgba(255, 255, 255, 0.9);
+}
+
+li.nav-item a.nav-link
+{
+  color: rgba(255, 255, 255, 0.9);
+}
+
+
+  div.highcharts-data-table
+{
+  margin-left: 40%;
+}
+
+footer
+{
+  width: 100%;
+}

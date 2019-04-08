@@ -161,6 +161,47 @@ class SerialesController extends Controller
     return $estatus_solicitud;
   }
 
+  public function graficarTipoOperacionSeriales($tipo_operacion, $year){
+    $serieTipoOperacion = [];
+    $query = Seriales::query();
+    if(isset($tipo_operacion) and ($tipo_operacion != '')){
+      $query = $query->where('tipo_solicitud', 'like', '%'.$tipo_operacion.'%');
+    }
+    if(isset($year) and ($year != '')){
+      $query = $query->whereYear('fecha', '=', $year);
+    }
+    $query = $query->selectRaw(
+      'COUNT(*) as cantidad,
+      extract(month from fecha) AS mes'
+    )->groupBy('mes')
+    ->orderBy('mes', 'asc');
+    $serieTipoOperacion = $query->get();
+    $meses_operaciones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    foreach($serieTipoOperacion as $meses){
+      $meses_operaciones[$meses->mes - 1] = $meses->cantidad;
+    }
+    // return $serieTipoOperacion;
+    return $meses_operaciones;
+  }
+
+  public function graficarTipoOperacionSerialesAnio($tipo123){
+    $serieTipoOperacionAnio = [];
+    $query = Seriales::query();
+    if(isset($tipo) and ($tipo != '')){
+      $query = $query->where('tipo_solicitud', 'like', '%'.$tipo123.'%');
+    }
+
+    $query = $query->selectRaw(
+      'COUNT(*) as cantidad,
+      extract(year from fecha) AS ano'
+    )
+    ->whereYear('fecha', '>=', 2010)
+    ->groupBy('ano')
+    ->orderBy('ano', 'asc');
+    $serieTipoOperacionAnio = $query->get();
+    return $serieTipoOperacionAnio;
+  }
+
   public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){
     return Excel::download(
       new SerialesExcelExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal),
