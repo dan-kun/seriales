@@ -199,16 +199,7 @@ class SerialesController extends Controller
     ->groupBy('ano')
     ->orderBy('ano', 'asc');
     $serieTipoOperacionAnio = $query->get();
-
-    /*return $serieTipoOperacionAnio;*/
-    $anio_operaciones = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-    foreach($serieTipoOperacionAnio as $anio){
-      $anio_operaciones[$anio->ano - 1] = $anio->cantidad;
-    }
-    // return $serieTipoOperacion;
-    return $anio_operaciones;
-
+    return $serieTipoOperacionAnio;
   }
 
   public function listadoSerialesExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){

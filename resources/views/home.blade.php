@@ -55,12 +55,10 @@
         </div>
       </div>
     </div>
-   </div>
-    <div id="container" style="width: 90%; height: 500px; margin: 0 auto"></div>
+  </div>
+  <div id="container" style="width: 90%; height: 500px; margin: 0 auto"></div>
 
-
-
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-10 col-md-10 offset-1">
         <br><br>
@@ -109,12 +107,10 @@
         </div>
       </div>
     </div>
-   </div>
+  </div>
+  <div id="container1" style="width: 90%; height: 500px; margin: 0 auto"></div>
 
-    <div id="container1" style="width: 90%; height: 500px; margin: 0 auto"></div>
-
-
-    <div class="container-fluid">
+  <div class="container-fluid">
     <div class="row">
       <div class="col-10 col-md-10 offset-1">
         <br><br>
@@ -143,9 +139,8 @@
         </div>
       </div>
     </div>
-   </div>
-
-    <div id="container2" style="width: 90%; height: 500px; margin: 0 auto"></div>
+  </div>
+  <div id="container2" style="width: 90%; height: 500px; margin: 0 auto"></div>
 
 
 @endsection

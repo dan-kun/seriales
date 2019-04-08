@@ -137,12 +137,21 @@ function getSerieTipoOperacionAnio (tipo123)
         }
     });
 
+    return resultado;
+
+}
+
 function graficar2 (tipo){
     var series2 = [];
+
+
+
+    console.log(tipo);
 
     if(tipo == '' || tipo == 'Todos'){
       var inclusion = getSerieTipoOperacionAnio("Inclusión");
       var exclusion = getSerieTipoOperacionAnio("Exclusión");
+      console.log(inclusion);
       series2 = [{
         name: 'Exclusion por año',
         data: inclusion
@@ -165,7 +174,20 @@ function graficar2 (tipo){
       }
 
       if(tipo == "Inclusión"){
-        var inclusion = getSerieTipoOperacionAnio("Inclusión");
+        // Se inicializan los vectores de inclusion (data para la serie) y
+        // categories (data para el eje de las x)
+        var inclusion = [];
+        var categories = [];
+        // Se obtiene la data desde el webservice y se almacena en la variable
+        // data
+        var data = getSerieTipoOperacionAnio("Inclusión");
+        // se recorre el diccionario data, asignando de manera balanceada la
+        // data en los respectivos vectores que permitiran construir la grafica
+        $.each(data, function(i, item) {
+          categories.push(item.ano)
+          inclusion.push(item.cantidad)
+        });
+
         series2 = [{
           name: 'Inclusion por año',
           data: inclusion
@@ -185,18 +207,7 @@ function graficar2 (tipo){
         text: 'Fuente: Departamento de Fraudes, CANTV'
       },
       xAxis: {
-        categories: [
-          '2010',
-          '2011',
-          '2012',
-          '2013',
-          '2014',
-          '2015',
-          '2016',
-          '2017',
-          '2018',
-          '2019'
-        ],
+        categories: categories,
         crosshair: true
       },
       yAxis: {
@@ -224,12 +235,10 @@ function graficar2 (tipo){
 
 }
 
-$('#tipo12').on('change', function(){
+  $('#tipo12').on('change', function(){
     var tipo = $('#tipo12').val();;
     graficar2(tipo);
-  })
-
-}
+  });
 
 
 
@@ -355,5 +364,5 @@ $('#tipo12').on('change', function(){
     var tipo1 = $('#status').val();;
     var anio1 = $('#anio1').val();;
     graficar1(tipo1, anio1);
-  }) 
+  })
 });
