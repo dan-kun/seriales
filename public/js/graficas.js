@@ -123,9 +123,9 @@ $(document).ready(function(){
 
 /*Graficas de totalidad por año*/
 
-function getSerieTipoOperacionAnio (tipo123)
+function getSerieTipoOperacionAnio(tipo, anio2)
 {
-    var url = 'api/seriales_anio' + '/' + tipo123 + '/';
+    var url = 'api/seriales_anio' + '/' + tipo + '/' + anio2 + '/';
     var resultado = [];
     $.ajax({
         url: url,
@@ -141,17 +141,35 @@ function getSerieTipoOperacionAnio (tipo123)
 
 }
 
-function graficar2 (tipo){
+function graficar2 (tipo, anio2){
     var series2 = [];
 
 
 
-    console.log(tipo);
+    console.log(tipo, anio2);
 
     if(tipo == '' || tipo == 'Todos'){
-      var inclusion = getSerieTipoOperacionAnio("Inclusión");
-      var exclusion = getSerieTipoOperacionAnio("Exclusión");
-      console.log(inclusion);
+
+      var categories = [];
+      var exclusion = [];
+      var inclusion = [];
+
+      var data = getSerieTipoOperacionAnio("Inclusión",anio2);
+      var data1 = getSerieTipoOperacionAnio("Exclusión",anio2);
+
+      $.each(data, function(i, item){
+
+        categories.push(item.ano)
+        inclusion.push(item.cantidad)
+
+      });
+
+      $.each(data1, function(i, item){
+
+        exclusion.push(item.cantidad)
+
+      });
+
       series2 = [{
         name: 'Exclusion por año',
         data: inclusion
@@ -165,7 +183,16 @@ function graficar2 (tipo){
     else{
 
       if(tipo == "Exclusión"){
-        var exclusion = getSerieTipoOperacionAnio("Exclusión");
+
+        var exclusion = [];
+        var categories = [];
+
+        var data = getSerieTipoOperacionAnio("Exclusión", anio2);
+
+        $.each(data, function(i, item){
+          categories.push(item.ano)
+          exclusion.push(item.cantidad)
+        });
         series2 = [{
           name: 'Exclusion por año',
           data: exclusion
@@ -180,7 +207,7 @@ function graficar2 (tipo){
         var categories = [];
         // Se obtiene la data desde el webservice y se almacena en la variable
         // data
-        var data = getSerieTipoOperacionAnio("Inclusión");
+        var data = getSerieTipoOperacionAnio("Inclusión", anio2);
         // se recorre el diccionario data, asignando de manera balanceada la
         // data en los respectivos vectores que permitiran construir la grafica
         $.each(data, function(i, item) {
@@ -235,9 +262,10 @@ function graficar2 (tipo){
 
 }
 
-  $('#tipo12').on('change', function(){
-    var tipo = $('#tipo12').val();;
-    graficar2(tipo);
+  $('#tipo, #anio2').on('change', function(){
+    var tipo = $('#tipo').val();;
+    var anio2 = $('#anio2').val();;
+    graficar2(tipo, anio2);
   });
 
 
@@ -365,4 +393,157 @@ function graficar2 (tipo){
     var anio1 = $('#anio1').val();;
     graficar1(tipo1, anio1);
   })
+
+
+
+  function getCasoTipoOperacionAnio(estatus1, anio3){
+   var url = 'api/casos_anio' + '/' + estatus1 + '/' + anio3 + '/';
+   // $.getJSON(url).done(function(data) {
+   //   datos = data;
+   //   this.inclusion = datos;
+   // })
+   // .fail(function(jqxhr, textStatus, error) {
+   //   var err = textStatus + ", " + error;
+   //   console.log("Error obteniendo las series para tipo de operacion: " + err);
+   // });
+   var resultado = [];
+   $.ajax({
+     url: url,
+     async: false,
+     dataType: 'json',
+     success: function (data) {
+       resultado = data;
+     }
+   });
+   return resultado;
+ }
+
+
+  function graficar3 (estatus1, anio3){
+      var series3 = [];
+
+
+
+      console.log(estatus1, anio3);
+
+      if(estatus1 == '' || estatus1 == 'Todos'){
+
+        var categorias = [];
+        var procesado = [];
+        var por = [];
+
+        var cas0 = getCasoTipoOperacionAnio("Procesado",anio3);
+        var cas01 = getCasoTipoOperacionAnio("Por",anio3);
+
+        $.each(cas0, function(i, item){
+
+          categorias.push(item.ano)
+          procesado.push(item.cantidad)
+
+        });
+
+        $.each(cas01, function(i, item){
+
+          por.push(item.cantidad)
+
+        });
+
+        series3 = [{
+          name: 'Procesados por año',
+          data: procesado
+
+        }, {
+          name: 'Por procesar por año',
+          data: por
+
+        }]
+      }
+      else{
+
+        if(estatus1 == "Procesado"){
+
+          var procesado = [];
+          var categorias = [];
+
+          var cas0 = getCasoTipoOperacionAnio("Procesado", anio3);
+
+          $.each(cas0, function(i, item){
+            categorias.push(item.ano)
+            procesado.push(item.cantidad)
+          });
+          series3 = [{
+            name: 'Procesado por año',
+            data: procesado
+
+          }]
+        }
+
+        if(estatus1 == "Por"){
+          // Se inicializan los vectores de inclusion (data para la serie) y
+          // categories (data para el eje de las x)
+          var por = [];
+          var categorias = [];
+          // Se obtiene la data desde el webservice y se almacena en la variable
+          // data
+          var cas01 = getCasoTipoOperacionAnio("Por", anio3);
+          // se recorre el diccionario data, asignando de manera balanceada la
+          // data en los respectivos vectores que permitiran construir la grafica
+          $.each(cas01, function(i, item) {
+            categorias.push(item.ano)
+            por.push(item.cantidad)
+          });
+
+          series3 = [{
+            name: 'Por procesar por año',
+            data: por
+
+          }]
+        }
+      }
+
+      Highcharts.chart('container3', {
+        chart: {
+          type: 'column'
+        },
+        title: {
+          text: 'Graficas por año de Seriales Negativos'
+        },
+        subtitle: {
+          text: 'Fuente: Departamento de Fraudes, CANTV'
+        },
+        xAxis: {
+          categories: categorias,
+          crosshair: true
+        },
+        yAxis: {
+          min: 0,
+          title: {
+            text: 'Seriales negativos'
+          }
+        },
+        tooltip: {
+          headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+          pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+          '<td style="padding:0"><b>{point.y:.1f}</b></td></tr>',
+          footerFormat: '</table>',
+          shared: true,
+          useHTML: true
+        },
+        plotOptions: {
+          column: {
+            pointPadding: 0.2,
+            borderWidth: 0
+          }
+        },
+        series: series3
+      });
+
+  }
+
+    $('#estatus1, #anio3').on('change', function(){
+      var estatus1 = $('#estatus1').val();;
+      var anio3 = $('#anio3').val();;
+      graficar3(estatus1, anio3);
+    });
+
 });

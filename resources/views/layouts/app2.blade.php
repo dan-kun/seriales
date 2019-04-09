@@ -48,8 +48,17 @@
                 <a class="dropdown-item" href="{{ route('listado_seriales') }}">Gesti&oacute;n de seriales</a>
               </div>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="{{ route('home') }}">home</a>
+            </li> --}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="{{ url('home') }}"  id="menuGestionDropdown" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gr&aacute;ficas
+              </a>
+              <div class="dropdown-menu" aria-labelledby="menuGestionDropdown">
+                <a class="dropdown-item" href="{{ route('cases') }}">Gr&aacute;ficas de casos</a>
+                <a class="dropdown-item" href="{{ route('seriales') }}">Gr&aacute;ficas de seriales</a>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Listar Casos</a>

@@ -23,16 +23,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $items = [
-            'Gestion'          => ['submenu' => [
-                                        'Gestion de Casos' => [ 'url' => 'casos'],
-                                        'Gestion de Seriales' => ['url' => 'api/seriales']
-            ]
-        ],
-            'Graficas' => ['url' => 'home'],
-            'Listar caso'    => ['url' => 'Listar_caso'],
-        ];
-        return view('home', compact('items'));
+
+        return view('home');
+    }
+    public function index1()
+    {
+
+        return view('cases');
     }
 
 }
