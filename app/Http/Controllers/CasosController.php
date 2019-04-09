@@ -157,6 +157,25 @@ class CasosController extends Controller
 
     }
 
+    public function graficarTipoOperacionCasosAnio($estatus1, $anio3){
+      $casoTipoOperacionAnio = [];
+      $query = Caso::query();
+      if(isset($estatus1) and ($estatus1 != '')){
+        $query = $query->where('status', 'like', '%'.$estatus1.'%');
+      }
+      if(isset($anio3) and ($anio3 != '')){
+        $query = $query->whereYear('fecha', '>=', $anio3);
+      }
+
+      $query = $query->selectRaw(
+        'COUNT(*) as cantidad,
+        extract(year from fecha) AS ano'
+      )
+      ->groupBy('ano')
+      ->orderBy('ano', 'asc');
+      $casoTipoOperacionAnio = $query->get();
+      return $casoTipoOperacionAnio;
+    }
 
     public function listadoCasosExport($codigo_caso, $estatus_caso, $fecha_desde, $fecha_hasta)
     {

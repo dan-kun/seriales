@@ -11,7 +11,7 @@
 }
 .show
 {
-  background: linear-gradient(90deg,#1c3643,#273b47 25%,#1e5372);
+  background: linear-gradient(90deg,#1e5372,#273b47 25%,#1c3643);
 }
 .dropdown-item
 {
@@ -19,7 +19,7 @@
 }
 .dan
 {
-  background: linear-gradient(90deg,#789fb3,#273b47 25%,#1e5372)!important;
+  background: linear-gradient(90deg,#1e5372,#273b47 25%,#1c3643);
 }
 
 #cuadro

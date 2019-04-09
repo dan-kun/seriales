@@ -72,11 +72,15 @@ Route::get(
 );
 
 Route::get(
-  'seriales_anio/{tipo}',
+  'seriales_anio/{tipo}/{anio2}',
   'SerialesController@graficarTipoOperacionSerialesAnio'
 );
 
 Route::get(
   'casos/{status}/{year}',
   'CasosController@graficarTipoOperacionCasos'
+);
+Route::get(
+  'casos_anio/{estatus1}/{anio3}',
+  'CasosController@graficarTipoOperacionCasosAnio'
 );

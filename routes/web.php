@@ -15,9 +15,10 @@
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('seriales');
+Route::get('/cases', 'HomeController@index1')->name('cases');
 /*Route::get('/Listar_caso', 'HomeController@Listar')->name('Listar_caso');*/
-/*Route::resource('denuncia_almacen', 'DenunciaController');*/
+// Route::resource('denuncia_almacen', 'DenunciaController');
 // Route::resource('/casos', 'CasosController');
 // Route::resource('/seriales', 'SerialesController');
 /*Route::get('menu-test', 'MenuController@index');*/

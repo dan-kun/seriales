@@ -19,9 +19,9 @@
     <link href="{{ asset('css/font_awesome_5.7.2.css') }}" rel="stylesheet">
     <link href="{{ asset('css/jquery-ui.min.css') }}" rel="stylesheet">
     <!-- Scripts -->
-    <!-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}" ></script>
+    {{-- <!-- <script src="{{ asset('js/jquery-3.3.1.min.js') }}" ></script>
     <script src="{{ asset('js/popper.min.js') }}" ></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" ></script> -->
+    <script src="{{ asset('js/bootstrap.min.js') }}" ></script> --> --}}
     <script src="{{ asset('DataTables/datatables.min.js') }}" ></script>
     <script src="{{ asset('js/font_awesome_5.7.2.js') }}" charset="utf-8"></script>
     <script src="{{ asset('js/jquery-ui.min.js') }}" charset="utf-8"></script>
@@ -48,8 +48,17 @@
                 <a class="dropdown-item" href="{{ route('listado_seriales') }}">Gesti&oacute;n de seriales</a>
               </div>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
               <a class="nav-link" href="{{ route('home') }}">home</a>
+            </li> --}}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="{{ url('home') }}"  id="menuGestionDropdown" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Gr&aacute;ficas
+              </a>
+              <div class="dropdown-menu" aria-labelledby="menuGestionDropdown">
+                <a class="dropdown-item" href="{{ route('cases') }}">Gr&aacute;ficas de casos</a>
+                <a class="dropdown-item" href="{{ route('seriales') }}">Gr&aacute;ficas de seriales</a>
+              </div>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">Listar Casos</a>
