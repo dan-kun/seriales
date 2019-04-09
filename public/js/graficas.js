@@ -1,5 +1,27 @@
 $(document).ready(function(){
 
+  var status = $('#status').val();
+  var anio1 = $('#anio1').val();
+  if(status !== undefined && anio1 !== undefined){
+    graficar1(status, anio1);
+  }
+  var estatus1 = $('#estatus1').val();
+  var anio3 = $('#anio3').val();
+  if(estatus1 !== undefined && anio3 !== undefined){
+    graficar3(estatus1, anio3);
+  }
+  var tipo = $('#tipo_solicitud').val();
+  var anio = $('#anio').val();
+  if(tipo !== undefined && anio !== undefined){
+    graficar(tipo, anio);
+  }
+  var tipo = $('#tipo').val();
+  var anio2 = $('#anio2').val();
+  if(tipo !== undefined && anio2 !== undefined){
+    graficar2(tipo, anio2);
+  }
+
+
   function getSerieTipoOperacion(tipo_operacion, anio){
     var url = 'api/seriales' + '/' + tipo_operacion + '/' + anio + '/';
     // $.getJSON(url).done(function(data) {
@@ -115,8 +137,8 @@ $(document).ready(function(){
   }
 
   $('#tipo_solicitud, #anio').on('change', function(){
-    var tipo = $('#tipo_solicitud').val();;
-    var anio = $('#anio').val();;
+    var tipo = $('#tipo_solicitud').val();
+    var anio = $('#anio').val();
     graficar(tipo, anio);
   })
 
@@ -263,8 +285,8 @@ function graficar2 (tipo, anio2){
 }
 
   $('#tipo, #anio2').on('change', function(){
-    var tipo = $('#tipo').val();;
-    var anio2 = $('#anio2').val();;
+    var tipo = $('#tipo').val();
+    var anio2 = $('#anio2').val();
     graficar2(tipo, anio2);
   });
 
@@ -541,8 +563,8 @@ function graficar2 (tipo, anio2){
   }
 
     $('#estatus1, #anio3').on('change', function(){
-      var estatus1 = $('#estatus1').val();;
-      var anio3 = $('#anio3').val();;
+      var estatus1 = $('#estatus1').val();
+      var anio3 = $('#anio3').val();
       graficar3(estatus1, anio3);
     });
 

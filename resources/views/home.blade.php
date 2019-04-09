@@ -34,7 +34,6 @@
                 <div class="form-group">
                   <label for="anio">A&ntilde;o:</label>
                   <select class="form-control anio" id="anio">
-                    <option value="">Seleccione un año</option>
                     <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
@@ -79,7 +78,6 @@
                 <div class="form-group">
                   <label for="anio">A&ntilde;o:</label>
                   <select class="form-control anio2" id="anio2">
-                    <option value="">Seleccione un año</option>
                     <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>

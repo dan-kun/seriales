@@ -41,7 +41,6 @@
                 <div class="form-group">
                   <label for="anio">A&ntilde;o:</label>
                   <select class="form-control anio1" id="anio1">
-                    <option value="">Seleccione un año</option>
                     <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
@@ -58,7 +57,7 @@
   </div>
   <div id="container1" style="width: 90%; height: 500px; margin: 0 auto"></div>
 
-  
+
 {{-- Anuales por estatus --}}
 
   <div class="container-fluid">
@@ -89,7 +88,6 @@
                 <div class="form-group">
                   <label for="anio">A&ntilde;o:</label>
                   <select class="form-control anio3" id="anio3">
-                    <option value="">Seleccione un año</option>
                     <option value="2019">2019</option>
                     <option value="2018">2018</option>
                     <option value="2017">2017</option>
