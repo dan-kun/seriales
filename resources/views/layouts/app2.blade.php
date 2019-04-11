@@ -29,7 +29,7 @@
     <script src="{{ asset('Highcharts/code/highcharts.js') }}" charset="utf-8"></script>
   </head>
 
-  <body>
+  <body >
     <div id="app" class="container-fluid dan">
       <nav class="navbar navbar-expand-lg navbar-light ">
         <a class="navbar-brand" href="#">
@@ -39,7 +39,19 @@
         </a>
         <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
           <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-            <li class="nav-item dropdown">
+            
+            @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                </li>
+                            @endif
+                        @else
+                            
+                            <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="{{ url('listado_seriales') }}"  id="menuGestionDropdown" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Gesti&oacute;n
               </a>
@@ -60,19 +72,7 @@
                 <a class="dropdown-item" href="{{ route('seriales') }}">Gr&aacute;ficas de seriales</a>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Listar Casos</a>
-            </li>
-            @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -98,7 +98,6 @@
     <div class="row">
       @yield('content')
     </div>
-    <br>
     <div class="row">
       @extends('footer')
     </div>

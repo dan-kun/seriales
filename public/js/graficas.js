@@ -90,7 +90,7 @@ $(document).ready(function(){
         type: 'column'
       },
       title: {
-        text: 'Promedio anual de Seriales Negativos'
+        text: 'Graficas por mes de Seriales Negativos'
       },
       subtitle: {
         text: 'Fuente: Departamento de Fraudes, CANTV'
@@ -364,7 +364,7 @@ function graficar2 (tipo, anio2){
         type: 'column'
       },
       title: {
-        text: 'Promedio anual de Casos Negativos'
+        text: 'Graficas por mes de Casos Negativos'
       },
       subtitle: {
         text: 'Fuente: Departamento de Fraudes, CANTV'
@@ -411,8 +411,8 @@ function graficar2 (tipo, anio2){
   }
 
   $('#status, #anio1').on('change', function(){
-    var tipo1 = $('#status').val();;
-    var anio1 = $('#anio1').val();;
+    var tipo1 = $('#status').val();
+    var anio1 = $('#anio1').val();
     graficar1(tipo1, anio1);
   })
 
