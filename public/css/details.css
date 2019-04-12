@@ -11,7 +11,7 @@
 }
 .show
 {
-  background: #183c6d94;
+  background: linear-gradient(40deg,#99e3ff,#303f9f);
 }
 .dropdown-item
 {
@@ -19,17 +19,17 @@
 }
 .dan
 {
-  background: #183c6d94;
+  background: linear-gradient(40deg,#99e3ff,#303f9f);
 }
 
 #cuadro
 {
-  background: #183c6d94;
+  background: linear-gradient(40deg,#99e3ff,#303f9f);
   height: 56px;
 }
 
 #footer{
-  background: #183c6d94;
+  background: linear-gradient(40deg,#99e3ff,#303f9f);
   margin-top: 50px;
 }
 
