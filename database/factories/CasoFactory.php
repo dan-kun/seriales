@@ -21,7 +21,7 @@ $factory->define(App\Caso::class, function (Faker $faker) {
         'lugar_ocurrencia' => $faker->paragraph($nbSentences = 1, $variableNbSentences = true),
         'descripcion' => str_random(20),
         'status' => $faker-> randomElement(['Procesado','Por procesar']),
-        'fecha'=>$faker->date($format = 'Y-m-d', $max = 'now'),
+        'fecha'=>$faker->dateTimeBetween($startDate = '-20 years', $endDate = 'now'),
 
     ];
 });
