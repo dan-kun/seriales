@@ -8,6 +8,8 @@ use App\Exports\SerialesExcelExport;
 
 use Maatwebsite\Excel\Facades\Excel;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
+/*
+use Dompdf\Dompdf;*/
 
 
 class SerialesController extends Controller
@@ -210,5 +212,12 @@ class SerialesController extends Controller
       'listado_seriales.xlsx'
     );
   }
+
+  /*public function listadoSerialesExportPDF($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal){
+    return Excel::download(
+      new SerialesExcelExport($tipo_solicitud, $estatus_solicitud, $serie_decimal, $serie_hexadecimal),
+      'listado_seriales.pdf'
+    )->export('pdf');
+  }*/
 
 }

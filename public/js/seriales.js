@@ -231,4 +231,50 @@ $(document).ready(function(){
     getCasosExcel();
   })
 
+
+ /* function getCasosPDF(){
+    // Inicializacion de las variables
+    var tipo_solicitud = '';
+    var estatus_solicitud = '';
+    // Capturando el valor seleccionado en el Select de tipo de solicitud
+    var tipo = $('#tipo_solicitud').val();
+    if(tipo == ""){
+      tipo_solicitud = 'Todos';
+    }
+    else{
+      tipo_solicitud = $('#tipo_solicitud').val();
+    }
+    // Capturando el valor seleccionado en el Select de estatus de solicitud
+    var estatus = $('#estatus_solicitud').val();
+    if(estatus == ""){
+      estatus_solicitud = 'Todos';
+    }
+    else{
+      estatus_solicitud = $('#estatus_solicitud').val();
+    }
+    // Capturando el valor escrito en el Input de Serie Decimal
+    var serie_dec = $('#serie_decimal').val();
+    if(serie_dec == ""){
+      serie_decimal = 'Todos';
+    }
+    else{
+      serie_decimal = $('#serie_decimal').val();
+    }
+    // Capturando el valor escrito en el Input de Serie Hexadecimal
+    var serie_hex = $('#serie_hexadecimal').val();
+    if(serie_hex == ""){
+      serie_hexadecimal = 'Todos';
+    }
+    else{
+      serie_hexadecimal = $('#serie_hexadecimal').val();
+    }
+    var url = 'api/seriales/pdf_export/' + tipo_solicitud + '/' + estatus_solicitud + '/' + serie_decimal + '/' + serie_hexadecimal + '/';
+    window.location.href = url;
+  }
+
+  $('#exportar_pdf').on('click', function(event){
+    event.preventDefault();
+    getCasosPDF();
+  })*/
+
 });

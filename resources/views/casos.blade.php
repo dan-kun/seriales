@@ -17,8 +17,8 @@
                   <a id="exportar_excel" href=""><i class="fas fa-file-csv fa-2x"></i></a>
                 </span>
                 &nbsp;
-                <span class="bg-white text-danger"><i class="fas fa-file-pdf fa-2x"></i></i></span>
-              </div>
+{{--                 <span class="bg-white text-danger"><i class="fas fa-file-pdf fa-2x"></i></i></span>
+ --}}              </div>
             </div>
           </div>
           <div class="card-body">

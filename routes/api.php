@@ -65,6 +65,11 @@ Route::get(
   'SerialesController@listadoSerialesExport'
 );
 
+/*Route::get(
+  'seriales/pdf_export/{tipo_solicitud}/{estatus_solicitud}/{serie_decimal}/{serie_hexadecimal}/',
+  'SerialesController@listadoSerialesExportPDF'
+);*/
+
 // Ruta para obtener Tipo de operacion filtrando por a#os
 Route::get(
   'seriales/{tipo_operacion}/{year}/',
